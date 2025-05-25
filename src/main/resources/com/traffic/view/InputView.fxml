@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="700" prefWidth="700" spacing="20" style="-fx-background-image: url('@main_assets/background.png'); -fx-background-color: #f5f7f9; " xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.traffic.controller.InputViewController">
+   <!-- Başlık -->
+    <Label prefHeight="44.0" prefWidth="396.0" style="-fx-font-size: 20; -fx-font-family: 'Segoe UI';" text="Please select Traffic Density input mode" textFill="#11a7bb">
+      <font>
+         <Font name="System Bold" size="22.0" />
+      </font>
+      <padding>
+         <Insets bottom="10.0" top="10.0" />
+      </padding></Label>
+     <CheckBox fx:id="manualCheckBox" onAction="#onManualSelected" prefHeight="27.0" prefWidth="321.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 20;" text="✍Manual Traffic Density Input">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </CheckBox>
+
+    <!-- Manuel / Random Seçimi -->
+    <HBox alignment="CENTER" prefHeight="64.0" prefWidth="700.0" spacing="20">
+        <CheckBox fx:id="randomCheckBox" onAction="#onRandomSelected" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 20;" text="🎲 Random Traffic Density Input">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+    </HBox>
+   <VBox fx:id="manualInputPane" alignment="CENTER_LEFT" managed="false" prefHeight="212.0" prefWidth="700.0" spacing="10.0" visible="false">
+      <children>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label alignment="CENTER" prefHeight="25.6" prefWidth="190.0" text="  North  ↑ :">
+                  <font>
+                     <Font size="14.0" />
+                  </font></Label>
+               <TextField fx:id="northField" promptText="Enter vehicle count" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
+                  <padding>
+                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                  </padding></TextField>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label alignment="CENTER" prefHeight="25.6" prefWidth="190.0" text="  South ↓ :">
+                  <font>
+                     <Font size="14.0" />
+                  </font></Label>
+               <TextField fx:id="southField" promptText="Enter vehicle count" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+                  <padding>
+                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                  </padding></TextField>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label alignment="CENTER" prefHeight="25.6" prefWidth="190.0" text=" East → :">
+                  <font>
+                     <Font size="14.0" />
+                  </font></Label>
+               <TextField fx:id="eastField" promptText="Enter vehicle count" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
+                  <padding>
+                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                  </padding></TextField>
+            </children>
+         </HBox>
+         <HBox layoutX="10.0" layoutY="151.0" prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label alignment="CENTER" prefHeight="25.6" prefWidth="190.0" text="  West ← :">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <TextField fx:id="westField" promptText="Enter vehicle count" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
+                  <padding>
+                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                  </padding></TextField>
+            </children>
+         </HBox>
+      </children></VBox>
+   <Button fx:id="startButton" disable="true" mnemonicParsing="false" onAction="#onStartButtonClick" prefHeight="66.0" prefWidth="314.0" style="-fx-background-color: #11A7BB; -fx-background-radius: 16; -fx-font-size: 32; -fx-font-family: 'Agency FB'; -fx-font-weight: bold;" text="START ➜" textFill="WHITE">
+      <font>
+         <Font size="24.0" />
+      </font></Button>
+
+
+</VBox>
