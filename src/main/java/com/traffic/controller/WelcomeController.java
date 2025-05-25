@@ -17,6 +17,6 @@ public class WelcomeController {
         //Butona tıklayan nesne alınır, ıklanan nesnenin ait olduğu sahne alınır
         //Bu sahne Stage’e dönüştürülür, yeni FXML dosyası (InputView.fxml) yüklenerek sahne değiştirilir
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        SceneManager.switchScene(stage, "/com/traffic/view/InputView.fxml");
+        SceneManager.switchScene(stage, "/traffic/view/InputView.fxml");
     }
 }

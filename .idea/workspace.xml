@@ -5,32 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc065d7d-c8dc-46b3-8c10-e91f6b47d2fb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/wetransfer_spss_64_bit_2024_10_25_0926.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/MapController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/SimulationView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/hello-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/bus_1.1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/bush.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/carfigure_1.1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/flower.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/flower_purple.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/house.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/motorcyc_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/parking.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/plant.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/plant1.1.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/plant2.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/road_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/roof.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/truck_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/map_1.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/traffic/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/traffic/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/traffic/controller/InputViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/traffic/controller/InputViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/traffic/controller/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/traffic/controller/WelcomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/InputView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/InputView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/SimulationView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/SimulationView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/WelcomeView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/WelcomeView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/caricon2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/caricon2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/arrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/arrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/background.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/background.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/bus_1.1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/bus_1.1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/bush.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/bush.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/carfigure_1.1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/carfigure_1.1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/caricon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/caricon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/flower.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/flower.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/flower_purple.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/flower_purple.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/house.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/house.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/intersection.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/intersection.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/motorcyc_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/motorcyc_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/parking.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/parking.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/plant.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/plant.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/plant1.1.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/plant1.1.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/plant2.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/plant2.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/road_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/road_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/roof.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/roof.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/traffic/view/main_assets/truck_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/traffic/view/main_assets/truck_1.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +115,9 @@
       <recent name="C:\Users\ASUS\IdeaProjects\traffic\src\main\resources\com\example\traffic" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ASUS\Desktop\TrafficSimulation\src\main\resources\traffic" />
+      <recent name="C:\Users\ASUS\Desktop\TrafficSimulation\src\main\resources" />
+      <recent name="C:\Users\ASUS\Desktop\TrafficSimulation\src\main\resources\view" />
       <recent name="C:\Users\ASUS\IdeaProjects\traffic\src\main\resources\com\example\traffic\main_assets" />
       <recent name="C:\Users\ASUS\IdeaProjects\traffic\src\main\resources\com\example\traffic" />
     </key>
@@ -143,6 +147,7 @@
       <workItem from="1748203906434" duration="653000" />
       <workItem from="1748204572904" duration="37000" />
       <workItem from="1748204619655" duration="161000" />
+      <workItem from="1748210769503" duration="691000" />
     </task>
     <servers />
   </component>

@@ -90,7 +90,7 @@ public class InputViewController {
                 System.out.println("East = " + east + ", West = " + west);
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                SceneManager.switchScene(stage, "/com/traffic/view/SimulationView.fxml");
+                SceneManager.switchScene(stage, "/traffic/view/SimulationView.fxml");
 
             } catch (NumberFormatException e) {
                 showAlert("Invalid input! Please enter numbers only.");
@@ -114,7 +114,7 @@ public class InputViewController {
             System.out.println("East = " + east + ", West = " + west);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            SceneManager.switchScene(stage, "/com/traffic/view/SimulationView.fxml");
+            SceneManager.switchScene(stage, "/traffic/view/SimulationView.fxml");
         }
     }
 
