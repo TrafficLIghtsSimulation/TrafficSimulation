@@ -3,9 +3,9 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,17 +29,17 @@
                   <TableColumn prefWidth="100.0" text="Remaining cars" />
               </columns>
             </TableView>
-            <Button ellipsisString="" layoutX="610.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: red; -fx-font-weight: bold;" text="RESET" textFill="#fff8f8">
+            <Button ellipsisString="" layoutX="610.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: red; -fx-font-weight: bold; -fx-background-radius: 16; -fx-font-size: 20; -fx-font-family: 'Agency FB';" text="RESET" textFill="#fff8f8">
                <font>
                   <Font name="Agency FB" size="17.0" />
                </font>
             </Button>
-            <Button ellipsisString="" layoutX="510.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: green; -fx-font-weight: bold;" text="START" textFill="#fff8f8">
+            <Button ellipsisString="" layoutX="404.0" layoutY="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="89.0" style="-fx-background-color: green; -fx-font-weight: bold; -fx-font-size: 20; -fx-background-radius: 16; -fx-font-family: 'Agency FB';" text="RESUME" textFill="#fff8f8">
                <font>
                   <Font name="Agency FB" size="17.0" />
                </font>
             </Button>
-            <Button ellipsisString="" layoutX="312.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: #7c11ff; -fx-font-weight: bold;" text="PAUSE" textFill="WHITE">
+            <Button ellipsisString="" layoutX="312.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: #7c11ff; -fx-font-weight: bold; -fx-font-size: 20; -fx-font-family: 'Agency FB'; -fx-background-radius: 16;" text="PAUSE" textFill="WHITE">
                <font>
                   <Font name="Agency FB" size="17.0" />
                </font>
@@ -226,22 +226,6 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <TextField layoutX="190.0" layoutY="136.0" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: e2dbc6;" text="30">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></TextField>
-      <TextField layoutX="181.0" layoutY="377.0" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: #e2dbc6;" text="5">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></TextField>
-      <TextField layoutX="470.0" layoutY="389.0" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: #e2dbc6;" text="110">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></TextField>
-      <TextField layoutX="463.0" layoutY="163.0" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: #e2dbc6;" text="90">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></TextField>
       <ImageView fitHeight="152.0" fitWidth="276.0" layoutY="200.0">
          <image>
             <Image url="@main_assets/road_2.png" />
@@ -446,14 +430,6 @@
          </viewport>
       </ImageView>
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="418.0" layoutY="413.0">
-         <image>
-            <Image url="@main_assets/plant1.1.PNG" />
-         </image>
-         <viewport>
-            <Rectangle2D width="30.0" />
-         </viewport>
-      </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="242.0" layoutY="417.0">
          <image>
             <Image url="@main_assets/plant1.1.PNG" />
          </image>
@@ -958,5 +934,45 @@
             <Image url="@main_assets/bus_1.1.png" />
          </image>
       </ImageView>
+      <Label layoutX="429.0" layoutY="89.0" text="NORTH">
+         <font>
+            <Font name="Agency FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="59.0" layoutY="151.0" text="WEST">
+         <font>
+            <Font name="Agency FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="522.0" layoutY="362.0" text="EAST">
+         <font>
+            <Font name="Agency FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="220.0" layoutY="443.0" text="SOUTH">
+         <font>
+            <Font name="Agency FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="195.0" layoutY="385.0" text="0">
+         <font>
+            <Font name="Agency FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="472.0" layoutY="392.0" text="5">
+         <font>
+            <Font name="Agency FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="463.0" layoutY="171.0" text="0">
+         <font>
+            <Font name="Agency FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="188.0" layoutY="144.0" text="0">
+         <font>
+            <Font name="Agency FB Bold" size="17.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
