@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dc065d7d-c8dc-46b3-8c10-e91f6b47d2fb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/wetransfer_spss_64_bit_2024_10_25_0926.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/MapController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/SimulationView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/hello-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/bus_1.1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/bush.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/carfigure_1.1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/flower.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/flower_purple.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/house.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/motorcyc_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/parking.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/plant.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/plant1.1.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/plant2.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/road_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/roof.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/main_assets/truck_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/traffic/map_1.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="ozge" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2xDABpGiYjMTmKeytOkv9XSGLMs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ozge&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Desktop/TrafficSimulation&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ASUS\IdeaProjects\traffic\src\main\resources\com\example\traffic\main_assets" />
+      <recent name="C:\Users\ASUS\IdeaProjects\traffic\src\main\resources\com\example\traffic" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ASUS\IdeaProjects\traffic\src\main\resources\com\example\traffic\main_assets" />
+      <recent name="C:\Users\ASUS\IdeaProjects\traffic\src\main\resources\com\example\traffic" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.39" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.39" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dc065d7d-c8dc-46b3-8c10-e91f6b47d2fb" name="Changes" comment="" />
+      <created>1747462141066</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1747462141066</updated>
+      <workItem from="1747462142419" duration="11822000" />
+      <workItem from="1748009516113" duration="341000" />
+      <workItem from="1748063240044" duration="15514000" />
+      <workItem from="1748169039294" duration="1748000" />
+      <workItem from="1748171665371" duration="4134000" />
+      <workItem from="1748203794604" duration="60000" />
+      <workItem from="1748203906434" duration="653000" />
+      <workItem from="1748204572904" duration="37000" />
+      <workItem from="1748204619655" duration="161000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
