@@ -1,8 +1,8 @@
-module com.example.traffic {
+module edu.erciyes.trafficlightcontrolsystem {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.example.traffic to javafx.fxml;
-    exports com.example.traffic;
+    opens com.traffic.controller to javafx.fxml;
+    exports com.traffic;
 }

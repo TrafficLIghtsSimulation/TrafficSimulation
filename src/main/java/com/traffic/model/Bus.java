@@ -1,0 +1,18 @@
+package com.traffic.model;
+
+import com.traffic.model.enums.Direction;
+import com.traffic.model.enums.MovementType;
+
+public class Bus extends Vehicle {
+
+    public Bus(String id, Direction direction, MovementType movementType, double speed) {
+        super(id, direction, movementType, speed);
+    }
+
+    //move() metodu vehicle da olduğu gibi çalışır
+
+    @Override
+    public double getLength() {
+        return 8.0; // Average bus length in meters
+    }
+}
