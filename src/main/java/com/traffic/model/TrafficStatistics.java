@@ -1,47 +1,80 @@
 package com.traffic.model;
+
+import com.traffic.model.enums.Direction;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import java.util.EnumMap;
+import java.util.Map;
+
 /**
+ * Singleton design pattern used
  * Tracks statistics for the simulation, such as total passed and waiting vehicles.
  */
 public class TrafficStatistics {
 
-    private int totalPassed;
-    private int totalWaiting;
+    private static TrafficStatistics instance;
 
-    public TrafficStatistics() {
-        this.totalPassed = 0;
-        this.totalWaiting = 0;
+    private final Map<Direction, TrafficStatisticsEntry> entries;
+    private final ObservableList<TrafficStatisticsEntry> observableList;
+
+
+    private TrafficStatistics() {
+        entries = new EnumMap<>(Direction.class);
+        observableList = FXCollections.observableArrayList();
+
+        for (Direction dir : Direction.values()) {
+            TrafficStatisticsEntry entry = new TrafficStatisticsEntry(dir);
+            entries.put(dir, entry);
+            observableList.add(entry);
+        }
     }
 
-    public void incrementPassed() {
-        totalPassed++;
+    public static TrafficStatistics getInstance() {
+        if (instance == null) {
+            instance = new TrafficStatistics();
+        }
+        return instance;
     }
 
-    public void incrementPassed(int count) {
-        totalPassed += count;
-    }
-
-    public void incrementWaiting() {
-        totalWaiting++;
-    }
-
-    public void incrementWaiting(int count) {
-        totalWaiting += count;
+    public ObservableList<TrafficStatisticsEntry> getObservableList() {
+        return observableList;
     }
 
     public int getTotalPassed() {
-        return totalPassed;
+        return entries.values().stream().mapToInt(TrafficStatisticsEntry::getPassed).sum();
     }
 
     public int getTotalWaiting() {
-        return totalWaiting;
+        return entries.values().stream().mapToInt(TrafficStatisticsEntry::getRemaining).sum();
     }
 
-    public int getTotalVehicles() {
-        return totalPassed + totalWaiting;
+
+    public void update(Direction dir, int passed, int remaining) {
+        TrafficStatisticsEntry entry = entries.get(dir);
+        entry.setPassed(passed);
+        entry.setRemaining(remaining);
     }
+
+    public void incrementPassed(Direction dir) {
+        TrafficStatisticsEntry entry = entries.get(dir);
+        entry.setPassed(entry.getPassed() + 1);
+    }
+
+    public void incrementWaiting(Direction dir, int count) {
+        TrafficStatisticsEntry entry = entries.get(dir);
+        entry.setRemaining(count);
+    }
+
 
     public void reset() {
-        totalPassed = 0;
-        totalWaiting = 0;
+        for (TrafficStatisticsEntry entry : entries.values()) {
+            entry.setPassed(0);
+            entry.setRemaining(0);
+        }
     }
+
+
+
+
 }
+

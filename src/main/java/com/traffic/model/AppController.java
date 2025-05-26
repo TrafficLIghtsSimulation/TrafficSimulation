@@ -22,7 +22,7 @@ public class AppController {
                          ISignalCalculationStrategy signalStrategy) {
 
         this.intersection = new Intersection();
-        this.statistics = new TrafficStatistics();
+        this.statistics = TrafficStatistics.getInstance();
         this.simulationManager = new SimulationManager(intersection, statistics, trafficQueues);
 
         Map<Direction, Integer> greenDurations = signalStrategy.calculateGreenLightDurations(trafficCounts);

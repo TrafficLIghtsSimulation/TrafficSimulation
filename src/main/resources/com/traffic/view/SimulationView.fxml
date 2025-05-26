@@ -1,45 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" style="-fx-background-color: #e2dbc6;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" style="-fx-background-color: #e2dbc6;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.traffic.controller.SimulationController">
    <children>
       <AnchorPane layoutY="550.0" prefHeight="150.0" prefWidth="700.0" style="-fx-border-color: black; -fx-background-color: #eeeeee;">
          <children>
-            <TableView prefHeight="150.0" prefWidth="252.0" style="-fx-background-color: light-gray;">
+            <TableView fx:id="statisticsTable" prefHeight="150.0" prefWidth="252.0" style="-fx-background-color: light-gray;">
               <columns>
-                <TableColumn prefWidth="75.0" text="Direction" />
-                <TableColumn prefWidth="75.0" text="Passing cars" />
-                  <TableColumn prefWidth="100.0" text="Remaining cars" />
+                <TableColumn fx:id="directionColumn" prefWidth="75.0" text="Direction" />
+                <TableColumn fx:id="passingColumn" prefWidth="75.0" text="Passing cars" />
+                  <TableColumn fx:id="remainingColumn" prefWidth="100.0" text="Remaining cars" />
               </columns>
             </TableView>
-            <Button ellipsisString="" layoutX="610.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: red; -fx-font-weight: bold; -fx-background-radius: 16; -fx-font-size: 20; -fx-font-family: 'Agency FB';" text="RESET" textFill="#fff8f8">
+            <Button fx:id="resetButton" ellipsisString="" layoutX="610.0" layoutY="50.0" mnemonicParsing="false" onAction="#onResetClick" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: red; -fx-font-weight: bold; -fx-background-radius: 16; -fx-font-size: 20; -fx-font-family: 'Agency FB';" text="RESET" textFill="#fff8f8">
                <font>
                   <Font name="Agency FB" size="17.0" />
                </font>
             </Button>
-            <Button ellipsisString="" layoutX="404.0" layoutY="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="89.0" style="-fx-background-color: green; -fx-font-weight: bold; -fx-font-size: 20; -fx-background-radius: 16; -fx-font-family: 'Agency FB';" text="RESUME" textFill="#fff8f8">
+            <Button fx:id="resumeButton" ellipsisString="" layoutX="404.0" layoutY="50.0" mnemonicParsing="false" onAction="#onResumeClick" prefHeight="37.0" prefWidth="89.0" style="-fx-background-color: green; -fx-font-weight: bold; -fx-font-size: 20; -fx-background-radius: 16; -fx-font-family: 'Agency FB';" text="RESUME" textFill="#fff8f8">
                <font>
                   <Font name="Agency FB" size="17.0" />
                </font>
             </Button>
-            <Button ellipsisString="" layoutX="312.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: #7c11ff; -fx-font-weight: bold; -fx-font-size: 20; -fx-font-family: 'Agency FB'; -fx-background-radius: 16;" text="PAUSE" textFill="WHITE">
+            <Button fx:id="pauseButton" ellipsisString="" layoutX="312.0" layoutY="50.0" mnemonicParsing="false" onAction="#onPauseClick" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: #7c11ff; -fx-font-weight: bold; -fx-font-size: 20; -fx-font-family: 'Agency FB'; -fx-background-radius: 16;" text="PAUSE" textFill="WHITE">
                <font>
                   <Font name="Agency FB" size="17.0" />
                </font>
@@ -54,12 +45,12 @@
       <Line endX="143.0" layoutX="557.0" layoutY="275.0" startX="-109.0" />
       <Line endX="-100.0" endY="175.0" layoutX="450.0" startX="-100.0" />
       <Line endX="-99.0" endY="174.0" layoutX="450.0" layoutY="376.0" startX="-100.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#23232d" height="150.0" layoutX="276.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#23232d" height="150.0" layoutX="274.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="152.0" />
       <Group layoutX="700.0" layoutY="41.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#080808" height="82.0" layoutX="216.0" layoutY="139.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="27.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#080808" height="82.0" layoutX="433.0" layoutY="113.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" width="27.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#080808" height="82.0" layoutX="456.0" layoutY="331.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="27.0" />
-      <Circle layoutX="448.0" layoutY="154.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="eastYellowLight" layoutX="448.0" layoutY="154.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
                <stops>
@@ -77,7 +68,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Circle layoutX="448.0" layoutY="129.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="eastGreenLight" layoutX="448.0" layoutY="129.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
                <stops>
@@ -100,7 +91,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Circle layoutX="447.0" layoutY="180.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="eastRedLight" layoutX="447.0" layoutY="180.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
                <stops>
@@ -118,7 +109,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Circle layoutX="254.0" layoutY="180.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="northRedLight" layoutX="254.0" layoutY="180.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
                <stops>
@@ -136,7 +127,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Circle layoutX="447.0" layoutY="372.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="southRedLight" layoutX="447.0" layoutY="372.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
                <stops>
@@ -154,7 +145,25 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Circle layoutX="230.0" layoutY="180.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="northYellowLight" layoutX="230.0" layoutY="180.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+         <fill>
+            <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="0.9843137264251709" opacity="0.4000000059604645" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Circle>
+      <Circle fx:id="southYellowLight" layoutX="470.0" layoutY="372.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
                <stops>
@@ -172,25 +181,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Circle layoutX="470.0" layoutY="372.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
-         <fill>
-            <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="1.0" green="0.9833333492279053" opacity="0.4000000059604645" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </fill>
-      </Circle>
-      <Circle layoutX="207.0" layoutY="180.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="northGreenLight" layoutX="207.0" layoutY="180.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
                <stops>
@@ -208,7 +199,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Circle layoutX="491.0" layoutY="372.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="southGreenLight" layoutX="491.0" layoutY="372.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
                <stops>
@@ -244,16 +235,6 @@
       <ImageView fitHeight="152.0" fitWidth="200.0" layoutX="249.0" layoutY="374.0" rotate="270.0">
          <image>
             <Image url="@main_assets/road_2.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="375.0" layoutY="445.0">
-         <image>
-            <Image url="@main_assets/carfigure_1.1.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="375.0" layoutY="385.0">
-         <image>
-            <Image url="@main_assets/carfigure_1.1.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="92.0" layoutY="345.0">
@@ -373,7 +354,7 @@
             <Rectangle2D width="30.0" />
          </viewport>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="418.0" layoutY="462.0">
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="417.0" layoutY="471.0">
          <image>
             <Image url="@main_assets/plant1.1.PNG" />
          </image>
@@ -429,7 +410,7 @@
             <Rectangle2D width="30.0" />
          </viewport>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="418.0" layoutY="413.0">
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="418.0" layoutY="424.0">
          <image>
             <Image url="@main_assets/plant1.1.PNG" />
          </image>
@@ -717,7 +698,7 @@
          </viewport>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#080808" height="82.0" layoutX="240.0" layoutY="354.0" stroke="BLACK" strokeType="INSIDE" width="27.0" />
-      <Circle layoutX="254.0" layoutY="372.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="westRedLight" layoutX="254.0" layoutY="372.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
                <stops>
@@ -735,7 +716,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Circle layoutX="254.0" layoutY="395.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="westYellowLight" layoutX="254.0" layoutY="395.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
                <stops>
@@ -753,7 +734,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Circle layoutX="254.0" layoutY="417.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fx:id="westGreenLight" layoutX="254.0" layoutY="417.0" radius="10.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <LinearGradient endX="0.5437352245862884" endY="1.0" startX="0.4018912529550827" startY="0.5910165484633569">
                <stops>
@@ -899,7 +880,7 @@
             <Rectangle2D width="30.0" />
          </viewport>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="40.0" layoutX="471.0" layoutY="138.0" rotate="180.0">
+      <ImageView fitHeight="20.0" fitWidth="40.0" layoutX="465.0" layoutY="111.0" rotate="180.0">
          <image>
             <Image url="@main_assets/arrow.png" />
          </image>
@@ -914,62 +895,47 @@
             <Image url="@main_assets/arrow.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="40.0" layoutX="438.0" layoutY="394.0" rotate="270.0">
+      <ImageView fitHeight="20.0" fitWidth="40.0" layoutX="418.0" layoutY="394.0" rotate="270.0">
          <image>
             <Image url="@main_assets/arrow.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="373.0" layoutY="131.0">
-         <image>
-            <Image url="@main_assets/truck_1.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="379.0" layoutY="240.0">
-         <image>
-            <Image url="@main_assets/motorcyc_1.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="376.0" layoutY="291.0">
-         <image>
-            <Image url="@main_assets/bus_1.1.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="429.0" layoutY="89.0" text="NORTH">
+      <Label layoutX="288.0" layoutY="6.0" text="NORTH" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="5.0" layoutY="315.0" text="WEST" textFill="WHITE">
          <font>
             <Font name="Agency FB Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="59.0" layoutY="151.0" text="WEST">
+      <Label layoutX="653.0" layoutY="211.0" text="EAST" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="362.0" layoutY="518.0" text="SOUTH" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="westTimerLabel" layoutX="209.0" layoutY="409.0" text="0">
          <font>
             <Font name="Agency FB Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="522.0" layoutY="362.0" text="EAST">
+      <Label fx:id="southTimerLabel" layoutX="500.0" layoutY="389.0" text="0">
          <font>
             <Font name="Agency FB Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="220.0" layoutY="443.0" text="SOUTH">
+      <Label fx:id="eastTimerLabel" layoutX="463.0" layoutY="171.0" text="0">
          <font>
             <Font name="Agency FB Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="195.0" layoutY="385.0" text="0">
-         <font>
-            <Font name="Agency FB Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="472.0" layoutY="392.0" text="5">
-         <font>
-            <Font name="Agency FB Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="463.0" layoutY="171.0" text="0">
-         <font>
-            <Font name="Agency FB Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="188.0" layoutY="144.0" text="0">
+      <Label fx:id="northTimerLabel" layoutX="188.0" layoutY="144.0" text="0">
          <font>
             <Font name="Agency FB Bold" size="17.0" />
          </font>
