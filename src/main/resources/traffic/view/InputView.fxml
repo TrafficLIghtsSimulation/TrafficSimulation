@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="700" prefWidth="700" spacing="20" style="-fx-background-image: url('@main_assets/background.png'); -fx-background-color: #f5f7f9; " xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.traffic.controller.InputViewController">
+<VBox alignment="CENTER" prefHeight="700" prefWidth="700" spacing="20" style="-fx-background-image: url('main_assets/background.png');  -fx-background-color: #f5f7f9; " xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.traffic.controller.InputViewController">
    <!-- Başlık -->
-    <Label prefHeight="44.0" prefWidth="396.0" style="-fx-font-size: 20; -fx-font-family: 'Segoe UI';" text="Please select Traffic Density input mode" textFill="#11a7bb">
+    <Label alignment="CENTER" prefHeight="46.0" prefWidth="714.0" style="-fx-font-size: 20; -fx-font-family: 'Segoe UI';" text="Please select Traffic Density input mode" textFill="#11a7bb">
       <font>
          <Font name="System Bold" size="22.0" />
       </font>
@@ -35,7 +35,7 @@
                   <font>
                      <Font size="14.0" />
                   </font></Label>
-               <TextField fx:id="northField" promptText="Enter vehicle count" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
+               <TextField fx:id="northField" minHeight="27.0" minWidth="220.0" promptText="Enter vehicle count between 0–100" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
                   <padding>
                      <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                   </padding></TextField>
@@ -47,7 +47,7 @@
                   <font>
                      <Font size="14.0" />
                   </font></Label>
-               <TextField fx:id="southField" promptText="Enter vehicle count" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
+               <TextField fx:id="southField" minHeight="27.0" minWidth="220.0" promptText="Enter vehicle count between 0–100" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
                   <HBox.margin>
                      <Insets />
                   </HBox.margin>
@@ -62,7 +62,7 @@
                   <font>
                      <Font size="14.0" />
                   </font></Label>
-               <TextField fx:id="eastField" promptText="Enter vehicle count" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
+               <TextField fx:id="eastField" minHeight="27.0" minWidth="220.0" promptText="Enter vehicle count between 0–100" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
                   <padding>
                      <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                   </padding></TextField>
@@ -75,7 +75,7 @@
                      <Font size="14.0" />
                   </font>
                </Label>
-               <TextField fx:id="westField" promptText="Enter vehicle count" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
+               <TextField fx:id="westField" minHeight="27.0" minWidth="220.0" promptText="Enter vehicle count between 0–100" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ccc;">
                   <padding>
                      <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                   </padding></TextField>

@@ -79,6 +79,15 @@ public class InputViewController {
                 int east = Integer.parseInt(eastField.getText());
                 int west = Integer.parseInt(westField.getText());
 
+                // 0–100 aralığını kontrol et
+                if (north < 0 || north > 100 ||
+                        south < 0 || south > 100 ||
+                        east < 0 || east > 100 ||
+                        west < 0 || west > 100) {
+                    showAlert("Please enter values between 0 and 100 for each direction.");
+                    return; // işlemi durdur
+                }
+
                 data.setVehicleCount(Direction.NORTH, north);
                 data.setVehicleCount(Direction.SOUTH, south);
                 data.setVehicleCount(Direction.EAST, east);

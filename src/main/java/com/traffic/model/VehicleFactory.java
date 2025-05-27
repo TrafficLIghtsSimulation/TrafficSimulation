@@ -39,6 +39,15 @@ public class VehicleFactory {
         }
     }
 
+    //Araç türlerinin resimler ile eşleştirilmesi
+    public static String getVehicleImagePath(Class<? extends Vehicle> vehicleClass) {
+        if (vehicleClass == Truck.class) return "/com/traffic/view/main_assets/truck.png";
+        if (vehicleClass == Bus.class) return "/com/traffic/view/main_assets/bus.png";
+        if (vehicleClass == Car.class) return "/com/traffic/view/main_assets/car.png";
+        if (vehicleClass == Motorcycle.class) return "/com/traffic/view/main_assets/motorcycle.png";
+        return null;
+    }
+
     public static class IntersectionPane {
     }
 

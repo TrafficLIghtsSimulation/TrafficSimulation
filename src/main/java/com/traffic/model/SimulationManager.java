@@ -31,11 +31,12 @@ public class SimulationManager {
 
         if (light.isGreen() && queue != null && !queue.isEmpty()) {
             Vehicle vehicle = queue.poll(); // one vehicle passed
-            statistics.incrementPassed();
+            statistics.incrementPassed(activeDirection);
         }
 
         // remaining vehicles are considered waiting
-        statistics.incrementWaiting(queue != null ? queue.size() : 0);
+        int waiting = (queue != null) ? queue.size() : 0;
+        statistics.incrementWaiting(activeDirection, waiting);
 
         notifyStatisticsListener();
     }
@@ -59,5 +60,9 @@ public class SimulationManager {
                     statistics.getTotalWaiting()
             );
         }
+    }
+
+    public Map<Direction, Queue<Vehicle>> getTrafficQueues() {
+        return trafficQueues;
     }
 }

@@ -16,6 +16,8 @@ import java.util.Map;
  * - Ensures that green + yellow for all directions equals 120 seconds
  */
 public class ProportionalCalculationStrategy implements ISignalCalculationStrategy {
+    // 0-60 SANİYE ARASI MAX YEŞİL IŞIK SÜRESİ ATAMASI
+
 
     private static final int TOTAL_CYCLE = 120;            // Full cycle time in seconds
     private static final int YELLOW_DURATION = 3;          // Fixed yellow duration per direction
