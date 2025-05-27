@@ -61,4 +61,8 @@ public class SimulationManager {
             );
         }
     }
+
+    public Map<Direction, Queue<Vehicle>> getTrafficQueues() {
+        return trafficQueues;
+    }
 }

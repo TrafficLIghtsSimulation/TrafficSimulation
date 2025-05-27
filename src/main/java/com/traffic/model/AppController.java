@@ -18,11 +18,14 @@ public class AppController {
     private final TrafficStatistics statistics;
 
     public AppController(Map<Direction, Integer> trafficCounts,
-                         Map<Direction, Queue<Vehicle>> trafficQueues,
                          ISignalCalculationStrategy signalStrategy) {
-
         this.intersection = new Intersection();
         this.statistics = TrafficStatistics.getInstance();
+
+        // Trafik kuyruklarını otomatik üretiyoruz:
+        Map<Direction, Queue<Vehicle>> trafficQueues =
+                TrafficDataGenerator.generateTrafficFromCounts(trafficCounts);
+
         this.simulationManager = new SimulationManager(intersection, statistics, trafficQueues);
 
         Map<Direction, Integer> greenDurations = signalStrategy.calculateGreenLightDurations(trafficCounts);

@@ -6,8 +6,9 @@ import com.traffic.model.enums.MovementType;
 import java.util.*;
 
 /**
- * Generates random traffic vehicle queues for each direction.
- * This can be used to simulate random traffic density.
+ * Generates traffic vehicle queues for each direction.
+ * - The number of vehicles per direction is given via TrafficData
+ * - The type and movement of each vehicle is generated randomly
  */
 public class TrafficDataGenerator {
 
@@ -17,12 +18,14 @@ public class TrafficDataGenerator {
 
     private static final Random random = new Random();
 
-    public static Map<Direction, Queue<Vehicle>> generateRandomTrafficData() {
+    // Her yönde, araç sayısı kadar,rastgele tür (Car, Bus, Truck, Motorcycle) ve rastgele yönde  (Forward, Left, Right) özelliklerinde araç üretir
+
+    public static Map<Direction, Queue<Vehicle>> generateTrafficFromCounts(Map<Direction, Integer> vehicleCounts) {
         Map<Direction, Queue<Vehicle>> trafficMap = new EnumMap<>(Direction.class);
 
         for (Direction direction : Direction.values()) {
             Queue<Vehicle> queue = new LinkedList<>();
-            int numberOfVehicles = 2 + random.nextInt(5); // 2 to 6 vehicles
+            int numberOfVehicles = vehicleCounts.getOrDefault(direction, 0);
 
             for (int i = 0; i < numberOfVehicles; i++) {
                 Class<? extends Vehicle> type = vehicleTypes.get(random.nextInt(vehicleTypes.size()));
@@ -33,17 +36,15 @@ public class TrafficDataGenerator {
                         generateRandomId(type),
                         direction,
                         movement,
-                        3.0 + random.nextDouble() * 2 // speed between 3.0 and 5.0
+                        3.0 + random.nextDouble() * 2
                 );
 
                 if (vehicle != null) {
                     queue.add(vehicle);
                 }
             }
-
             trafficMap.put(direction, queue);
         }
-
         return trafficMap;
     }
 

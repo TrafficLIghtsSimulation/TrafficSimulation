@@ -13,24 +13,29 @@
    <children>
       <AnchorPane layoutY="550.0" prefHeight="150.0" prefWidth="700.0" style="-fx-border-color: black; -fx-background-color: #eeeeee;">
          <children>
-            <TableView fx:id="statisticsTable" prefHeight="150.0" prefWidth="252.0" style="-fx-background-color: light-gray;">
+            <TableView fx:id="statisticsTable" prefHeight="150.0" prefWidth="252.0" style="-fx-background-color: #f5f7f9;">
               <columns>
                 <TableColumn fx:id="directionColumn" prefWidth="75.0" text="Direction" />
                 <TableColumn fx:id="passingColumn" prefWidth="75.0" text="Passing cars" />
                   <TableColumn fx:id="remainingColumn" prefWidth="100.0" text="Remaining cars" />
               </columns>
             </TableView>
-            <Button fx:id="resetButton" ellipsisString="" layoutX="610.0" layoutY="50.0" mnemonicParsing="false" onAction="#onResetClick" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: red; -fx-font-weight: bold; -fx-background-radius: 16; -fx-font-size: 20; -fx-font-family: 'Agency FB';" text="RESET" textFill="#fff8f8">
+            <Button fx:id="resetButton" ellipsisString="" layoutX="597.0" layoutY="50.0" mnemonicParsing="false" onAction="#onResetClick" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: red; -fx-font-weight: bold; -fx-background-radius: 16; -fx-font-size: 20; -fx-font-family: 'Agency FB';" text="RESET" textFill="#fff8f8">
                <font>
                   <Font name="Agency FB" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="resumeButton" ellipsisString="" layoutX="404.0" layoutY="50.0" mnemonicParsing="false" onAction="#onResumeClick" prefHeight="37.0" prefWidth="89.0" style="-fx-background-color: green; -fx-font-weight: bold; -fx-font-size: 20; -fx-background-radius: 16; -fx-font-family: 'Agency FB';" text="RESUME" textFill="#fff8f8">
+            <Button fx:id="resumeButton" ellipsisString="" layoutX="489.0" layoutY="50.0" mnemonicParsing="false" onAction="#onResumeClick" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: green; -fx-font-weight: bold; -fx-font-size: 20; -fx-background-radius: 16; -fx-font-family: 'Agency FB';" text="RESUME" textFill="#fff8f8">
                <font>
                   <Font name="Agency FB" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="pauseButton" ellipsisString="" layoutX="312.0" layoutY="50.0" mnemonicParsing="false" onAction="#onPauseClick" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: #7c11ff; -fx-font-weight: bold; -fx-font-size: 20; -fx-font-family: 'Agency FB'; -fx-background-radius: 16;" text="PAUSE" textFill="WHITE">
+            <Button fx:id="pauseButton" ellipsisString="" layoutX="387.0" layoutY="50.0" mnemonicParsing="false" onAction="#onPauseClick" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: #7c11ff; -fx-font-weight: bold; -fx-font-size: 20; -fx-font-family: 'Agency FB'; -fx-background-radius: 16;" text="PAUSE" textFill="WHITE">
+               <font>
+                  <Font name="Agency FB" size="17.0" />
+               </font>
+            </Button>
+            <Button fx:id="startButton" ellipsisString="" layoutX="283.0" layoutY="50.0" mnemonicParsing="false" onAction="#onStartSimulationClick" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: #159c9c; -fx-font-weight: bold; -fx-font-size: 20; -fx-font-family: 'Agency FB'; -fx-background-radius: 16;" text="START" textFill="#f9ffff">
                <font>
                   <Font name="Agency FB" size="17.0" />
                </font>
@@ -900,45 +905,46 @@
             <Image url="@main_assets/arrow.png" />
          </image>
       </ImageView>
-      <Label layoutX="288.0" layoutY="6.0" text="NORTH" textFill="WHITE">
+      <Label layoutX="275.0" layoutY="15.0" rotate="270.0" style="-fx-font-family: 'Agency FB'; -fx-font-size: 22;" text="NORTH" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="5.0" layoutY="315.0" text="WEST" textFill="WHITE">
+      <Label layoutX="5.0" layoutY="315.0" style="-fx-font-family: 'Agency FB'; -fx-font-size: 22;" text="WEST" textFill="WHITE">
          <font>
             <Font name="Agency FB Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="653.0" layoutY="211.0" text="EAST" textFill="WHITE">
+      <Label layoutX="653.0" layoutY="211.0" style="-fx-font-family: 'Agency FB'; -fx-font-size: 22;" text="EAST" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="362.0" layoutY="518.0" text="SOUTH" textFill="WHITE">
+      <Label layoutX="385.0" layoutY="505.0" rotate="270.0" style="-fx-font-family: 'Agency FB'; -fx-font-size: 22;" text="SOUTH" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="westTimerLabel" layoutX="209.0" layoutY="409.0" text="0">
+      <Label fx:id="westTimerLabel" layoutX="209.0" layoutY="409.0" style="-fx-font-family: 'Agency FB'; -fx-font-size: 20;" text="0">
          <font>
             <Font name="Agency FB Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="southTimerLabel" layoutX="500.0" layoutY="389.0" text="0">
+      <Label fx:id="southTimerLabel" layoutX="500.0" layoutY="389.0" style="-fx-font-family: 'Agency FB'; -fx-font-size: 20;" text="0">
          <font>
             <Font name="Agency FB Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="eastTimerLabel" layoutX="463.0" layoutY="171.0" text="0">
+      <Label fx:id="eastTimerLabel" layoutX="463.0" layoutY="171.0" prefHeight="21.0" prefWidth="20.0" style="-fx-font-family: 'Agency FB'; -fx-font-size: 20;" text="0">
          <font>
             <Font name="Agency FB Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="northTimerLabel" layoutX="188.0" layoutY="144.0" text="0">
+      <Label fx:id="northTimerLabel" layoutX="188.0" layoutY="144.0" style="-fx-font-family: 'Agency FB'; -fx-font-size: 20;" text="0">
          <font>
             <Font name="Agency FB Bold" size="17.0" />
          </font>
       </Label>
+      <Pane fx:id="vehicleLayer" layoutX="-2.0" layoutY="8.0" pickOnBounds="false" prefHeight="329.0" prefWidth="700.0" />
    </children>
 </Pane>
