@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" style="-fx-background-color: #e2dbc6;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.traffic.controller.SimulationController">
    <children>
-      <AnchorPane layoutY="550.0" prefHeight="150.0" prefWidth="700.0" style="-fx-border-color: black; -fx-background-color: #eeeeee;">
+      <AnchorPane layoutY="550.0" prefHeight="106.0" prefWidth="700.0" style="-fx-border-color: black; -fx-background-color: #eeeeee;">
          <children>
             <TableView fx:id="statisticsTable" prefHeight="150.0" prefWidth="252.0" style="-fx-background-color: #f5f7f9;">
               <columns>
@@ -267,14 +267,6 @@
          </viewport>
       </ImageView>
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="242.0" layoutY="462.0">
-         <image>
-            <Image url="@main_assets/plant1.1.PNG" />
-         </image>
-         <viewport>
-            <Rectangle2D width="30.0" />
-         </viewport>
-      </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="242.0" layoutY="510.0">
          <image>
             <Image url="@main_assets/plant1.1.PNG" />
          </image>
@@ -945,7 +937,7 @@
             <Font name="Agency FB Bold" size="17.0" />
          </font>
       </Label>
-      <Pane fx:id="vehicleLayer" layoutX="-2.0" layoutY="8.0" pickOnBounds="false" prefHeight="329.0" prefWidth="700.0">
+      <Pane fx:id="vehicleLayer" layoutX="0.0" layoutY="0.0" prefHeight="700.0" prefWidth="700.0" pickOnBounds="false">
          <children>
             <Label fx:id="westTimerLabel11" layoutX="594.0" layoutY="231.0" style="-fx-font-family: 'Agency FB'; -fx-font-size: 20;" textFill="#fff9f9">
                <font>
@@ -953,5 +945,13 @@
                </font>
             </Label>
          </children></Pane>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="247.0" layoutY="510.0">
+         <image>
+            <Image url="@main_assets/plant1.1.PNG" />
+         </image>
+         <viewport>
+            <Rectangle2D width="30.0" />
+         </viewport>
+      </ImageView>
    </children>
 </Pane>
