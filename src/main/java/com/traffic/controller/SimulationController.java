@@ -182,16 +182,17 @@ public class SimulationController {
         updateLightCircles();
         startCountdownTimer(direction, greenDuration, Paint.valueOf("#007200"));// YEŞİL geri sayım başlasın
         Timeline vehicleTimeline = new Timeline();
-        for (int i = 0; i < greenDuration; i++) {
+        int estimatedPassing = Math.min(greenDuration, vehicleImageQueues.getOrDefault(direction, new LinkedList<>()).size());
+        for (int i = 0; i < estimatedPassing; i++) {
             int delay = i;
-            KeyFrame frame = new KeyFrame(Duration.seconds(delay), e -> animateVehicle(direction));
+            KeyFrame frame = new KeyFrame(Duration.seconds(delay * 1.1), e -> animateVehicle(direction));
             vehicleTimeline.getKeyFrames().add(frame);
         }
         vehicleTimeline.play();
 
+
         // Araç geçişi varsayımı: her saniyede 1 araç geçebilir
         int totalVehicles = trafficData.getVehicleCount(direction);
-        int estimatedPassing = Math.min(greenDuration, totalVehicles); // Örn: 8 sn yeşil varsa 8 araç geçsin
         int remaining = totalVehicles - estimatedPassing;   // Modeli güncelle
 
         trafficData.setVehicleCount(direction, remaining);
@@ -286,42 +287,21 @@ public class SimulationController {
     }
 
 
-    /*private double getVehicleX(Direction direction, int index) {
-        return switch (direction) {
-            case NORTH -> 310;
-            case SOUTH -> 380;
-            case EAST -> 675 - index * 45;
-            case WEST -> 10 + index * 45;
-        };
-    }
-
-    private double getVehicleY(Direction direction, int index) {
-        return switch (direction) {
-            case NORTH -> 0 + index * 45;
-            case SOUTH -> 510 - index * 45;
-            case EAST -> 225;
-            case WEST -> 285;
-        };
-    }*/
-
     private double getVehicleX(Direction direction, int index) {
         return switch (direction) {
-            case NORTH -> 310;
-            case SOUTH -> 380;
-            case EAST  -> 675 - index * VEHICLE_STEP;
-            case WEST  -> 10 + index * VEHICLE_STEP;
+            case NORTH, SOUTH -> direction == Direction.NORTH ? 310 : 380;
+            case EAST -> 485 + index * 40;
+            case WEST -> 200 - index * 40;
         };
     }
 
     private double getVehicleY(Direction direction, int index) {
         return switch (direction) {
-            case NORTH -> 10 + index * VEHICLE_STEP;
-            case SOUTH -> 500 - index * VEHICLE_STEP;
-            case EAST  -> 225;
-            case WEST  -> 285;
+            case EAST, WEST -> direction == Direction.EAST ? 225 : 285;
+            case NORTH -> 120 - index * 40;
+            case SOUTH -> 380 + index * 40;
         };
     }
-
 
     private int getCurrentVehicleIndex(Direction direction) {
         int maxIndex = -1;
@@ -334,24 +314,24 @@ public class SimulationController {
                 switch (direction) {
                     case NORTH -> {
                         if (x == 310 && angle == 180)
-                            maxIndex = Math.max(maxIndex, (int)((y - 10) / VEHICLE_STEP));
+                            maxIndex++;
                     }
                     case SOUTH -> {
                         if (x == 380 && angle == 0)
-                            maxIndex = Math.max(maxIndex, (int)((500 - y) / VEHICLE_STEP));
+                            maxIndex++;
                     }
                     case EAST -> {
                         if (y == 225 && angle == 270)
-                            maxIndex = Math.max(maxIndex, (int)((675 - x) / VEHICLE_STEP));
+                            maxIndex++;
                     }
                     case WEST -> {
                         if (y == 285 && angle == 90)
-                            maxIndex = Math.max(maxIndex, (int)((x - 10) / VEHICLE_STEP));
+                            maxIndex++;
                     }
                 }
             }
         }
-        return maxIndex + 1; // Yeni araç için bir sonraki index
+        return maxIndex + 1;
     }
 
     private void animateVehicle(Direction direction) {
@@ -361,14 +341,6 @@ public class SimulationController {
         ImageView vehicle = queue.poll(); // sıradaki ilk aracı çıkar
         if (vehicle == null) return;
 
-        /*TranslateTransition transition = new TranslateTransition(Duration.seconds(2), vehicle);
-
-        switch (direction) {
-            case NORTH -> transition.setByY(100); // Aşağı doğru
-            case SOUTH -> transition.setByY(-100);  // Yukarı doğru
-            case EAST  -> transition.setByX(-100);  // Sola doğru
-            case WEST  -> transition.setByX(100); // Sağa doğru
-        }*/
         TranslateTransition transition = new TranslateTransition(Duration.seconds(1), vehicle);
 
         switch (direction) {
@@ -381,25 +353,24 @@ public class SimulationController {
         transition.setOnFinished(e -> {
             vehicleLayer.getChildren().remove(vehicle); // Geçen aracı sahneden sil
 
-            // Sıradaki araç varsa
             if (!queue.isEmpty()) {
-                ImageView next = queue.poll(); // sıradaki aracı kuyruktan al
-
-                int index = getCurrentVehicleIndex(direction); // sahnede kalan araç sayısı
+                ImageView next = queue.peek(); // Sıradaki araç
+                int index = getCurrentVehicleIndex(direction); // Şu an sahnedeki araç sayısı
                 double x = getVehicleX(direction, index);
                 double y = getVehicleY(direction, index);
 
                 next.setLayoutX(x);
                 next.setLayoutY(y);
 
-                vehicleLayer.getChildren().add(next); // yeni aracı sahneye ekle
+                if (!vehicleLayer.getChildren().contains(next)) {
+                    vehicleLayer.getChildren().add(next);
+                    queue.poll(); // Gerçekten sıradan çıkar
+                }
             }
         });
 
         transition.play();
     }
-
-
 
     @FXML
     private void onStartSimulationClick() {
@@ -437,13 +408,27 @@ public class SimulationController {
                 index++;
             }
 
-            // İlk aracı sahneye ekle
+            /*// İlk aracı sahneye ekle
             if (!imageQueue.isEmpty()) {
                 ImageView first = imageQueue.peek(); // sıradaki ilk aracı al
                 first.setLayoutX(getVehicleX(direction, 0));
                 first.setLayoutY(getVehicleY(direction, 0));
                 vehicleLayer.getChildren().add(first);
+            }*/
+
+            //iLK 4 ARACI SAHNEYE EKLE
+            int maxInitial = Math.min(imageQueue.size(), 4);
+            for (int i = 0; i < maxInitial; i++) {
+                ImageView vehicle = imageQueue.poll();
+                if (vehicle != null) {
+                    double x = getVehicleX(direction, i);
+                    double y = getVehicleY(direction, i);
+                    vehicle.setLayoutX(x);
+                    vehicle.setLayoutY(y);
+                    vehicleLayer.getChildren().add(vehicle);
+                }
             }
+
         }
 
         while (trafficData.getVehicleCount(directionOrder.get(currentIndex)) == 0) {
