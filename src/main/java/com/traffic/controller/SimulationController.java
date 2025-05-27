@@ -1,16 +1,40 @@
 package com.traffic.controller;
 
+import com.traffic.model.PathFactory;
+import com.traffic.model.enums.Direction;
+import com.traffic.model.enums.MovementType;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Path;
+
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Controller for the simulation screen.
  * This class handles time counters and will later handle vehicle and light updates.
  */
-public class SimulationController {
+public class SimulationController implements Initializable {
+    @FXML
+    private Pane kok;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        PathFactory pathFactory = new PathFactory();
+        Path yol = pathFactory.getPath(Direction.SOUTH, MovementType.RIGHT);
+        yol.setStroke(Color.BLACK);
+        yol.setStrokeWidth(4);
+        yol.getStrokeDashArray().addAll(10.0, 10.0);
+        yol.setFill(null);
+
+        kok.getChildren().add(yol);
+    }
     // InputView'deki Start butonuna basınca SimulationView ekranı açılır ve simülasyon başlar
     // Pause : Nesnelerin X ve Y konumlarındaki değişim sıfır olmalı mevcut konumlarında kalacaklar, Timer mevcut durumda durucak, Işıkların durumlarında değişiklik olmamalı
     // Resume : Pause daki durum devam ettirilecek

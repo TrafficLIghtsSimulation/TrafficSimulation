@@ -3,7 +3,7 @@ import com.traffic.model.enums.Direction;
 import com.traffic.model.interfaces.IVehicleDirectionStrategy;
 
 import java.util.Random;
-
+//BURADA ARAÇLARIN GİDECEĞİ YÖNLERİ Mİ ATIYORSUN
 public class RandomDirectionStrategy implements IVehicleDirectionStrategy {
     private final Random random = new Random();
 

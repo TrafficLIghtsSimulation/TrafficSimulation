@@ -1,6 +1,7 @@
 package com.traffic.model;
 
 import com.traffic.model.enums.Direction;
+import javafx.geometry.Point2D;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -38,6 +39,16 @@ public class Intersection {
     public void resetAllLightsToRed() {
         for (TrafficLight light : lights.values()) {
             light.setCurrentState(com.traffic.model.enums.LightState.RED);
+        }
+    }
+    //kavşağa girip girmediğimin kontrolü için
+    public static Point2D getIntersectionPoint(Direction direction){
+        switch (direction) {
+            case NORTH: return new Point2D(0, 0);
+            case SOUTH: return new Point2D(0, 1);
+            case EAST: return new Point2D(1, 0);
+            case WEST: return new Point2D(1, 1);
+            default: return null;
         }
     }
 }

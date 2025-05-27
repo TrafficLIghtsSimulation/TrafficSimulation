@@ -17,8 +17,10 @@ public abstract class Vehicle {
     protected double brakingDistance = 20.0; // distance before the light to start slowing down
     protected boolean stopped;
 
+
     protected double posX;
     protected double posY;
+
 
     public Vehicle(String id, Direction direction, MovementType movementType, double speed) {
         this.id = id;
