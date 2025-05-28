@@ -30,13 +30,6 @@ public class TimerManager {
         return elapsedTime;
     }
 
-    public void tick() {
-        elapsedTime++;
-        if (elapsedTime >= cycleTime) {
-            elapsedTime = 0; // reset at the end of a cycle
-        }
-    }
-
     public int getGreenTime(Direction direction) {
         return greenTimes.getOrDefault(direction, 0);
     }
@@ -51,7 +44,4 @@ public class TimerManager {
         return cycleTime - (green + yellow);
     }
 
-    public void reset() {
-        elapsedTime = 0;
-    }
 }

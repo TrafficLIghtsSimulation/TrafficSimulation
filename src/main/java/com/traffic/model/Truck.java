@@ -10,9 +10,4 @@ public class Truck extends Vehicle {
     }
 
     //move() metodu vehicle da olduğu gibi çalışır
-
-    @Override
-    public double getLength() {
-        return 10.0; // Truck length in meters
-    }
 }

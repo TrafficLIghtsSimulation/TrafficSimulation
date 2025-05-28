@@ -11,8 +11,4 @@ public class Motorcycle extends Vehicle {
 
     //move() metodu vehicle da olduğu gibi çalışır
 
-    @Override
-    public double getLength() {
-        return 2.0; // Average motorcycle length in meters
-    }
 }

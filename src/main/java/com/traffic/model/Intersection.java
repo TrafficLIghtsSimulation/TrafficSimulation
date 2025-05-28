@@ -30,14 +30,4 @@ public class Intersection {
             light.setGreenDuration(duration);
         }
     }
-
-    public Map<Direction, TrafficLight> getAllTrafficLights() {
-        return lights;
-    }
-
-    public void resetAllLightsToRed() {
-        for (TrafficLight light : lights.values()) {
-            light.setCurrentState(com.traffic.model.enums.LightState.RED);
-        }
-    }
 }

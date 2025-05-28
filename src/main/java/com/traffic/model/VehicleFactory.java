@@ -48,15 +48,4 @@ public class VehicleFactory {
         return null;
     }
 
-    public static class IntersectionPane {
-    }
-
-    public static class MainView {
-    }
-
-    public static class StatisticsPanel {
-    }
-
-    public static class VehicleNode {
-    }
 }

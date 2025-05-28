@@ -41,9 +41,6 @@ public class TrafficData {
         return vehicleCounts;
     }
 
-    public int getTotalVehicleCount() {
-        return vehicleCounts.values().stream().mapToInt(Integer::intValue).sum();
-    }
 
     public void reset() {
         for (Direction direction : vehicleCounts.keySet()) {

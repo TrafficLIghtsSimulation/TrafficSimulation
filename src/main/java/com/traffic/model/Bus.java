@@ -11,8 +11,4 @@ public class Bus extends Vehicle {
 
     //move() metodu vehicle da olduğu gibi çalışır
 
-    @Override
-    public double getLength() {
-        return 8.0; // Average bus length in meters
-    }
 }

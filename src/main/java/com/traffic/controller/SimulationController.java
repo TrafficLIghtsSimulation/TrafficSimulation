@@ -8,7 +8,6 @@ import com.traffic.util.SceneManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.fxml.FXML;
@@ -37,6 +36,7 @@ import java.util.*;
  * This class handles time counters and will later handle vehicle and light updates.
  */
 public class SimulationController {
+
     // InputView'deki Start butonuna basınca SimulationView ekranı açılır ve simülasyon başlar
     // Pause : Nesnelerin X ve Y konumlarındaki değişim sıfır olmalı mevcut konumlarında kalacaklar, Timer mevcut durumda durucak, Işıkların durumlarında değişiklik olmamalı
     // Resume : Pause daki durum devam ettirilecek
@@ -78,11 +78,16 @@ public class SimulationController {
     // Her yön için sahnedeki araçların ImageView kuyruğu
     private final Map<Direction, Queue<ImageView>> vehicleImageQueues = new EnumMap<>(Direction.class);
 
-    private static final double VEHICLE_STEP = 45.0;
+    //pause ve resume işlemlerinde o an aktif olan nesneleri tutar
+    private List<Timeline> activeTimelines = new ArrayList<>();
+    private List<PathTransition> activeTransitions = new ArrayList<>();
+    private boolean isPaused = false;
+    private boolean isRunning = false;
 
     public void initialize() {
         setupTable();
         setupLightStates();
+        setStatesButtons();
     }
 
 
@@ -118,7 +123,6 @@ public class SimulationController {
         yellow.setFill(Paint.valueOf(state == LightState.YELLOW ? "#fffb00ff" : "#fffb0066"));
         green.setFill(Paint.valueOf(state == LightState.GREEN ? "#00ff00ff" : "#00ff0066"));
     }
-
 
 
     private void startCountdownTimer(Direction direction, int durationInSeconds, Paint color) {
@@ -168,7 +172,6 @@ public class SimulationController {
     }
 
 
-
     private void activateDirection(Direction direction) {
         Map<Direction, Integer> greenDurations = signalStrategy.calculateGreenLightDurations(trafficData.getAllCounts());
         int greenDuration = greenDurations.getOrDefault(direction, 0);
@@ -185,34 +188,9 @@ public class SimulationController {
 
         currentLightStates.put(direction, LightState.GREEN);
         updateLightCircles();
-        startCountdownTimer(direction, greenDuration, Paint.valueOf("#007200"));// YEŞİL geri sayım başlasın
+        startCountdownTimer(direction, greenDuration, Paint.valueOf("#007200"));// Yeşil renkte geri sayım başlasın
         scheduleVehicleMovements(direction, greenDuration);
-        /*
-        Timeline vehicleMovementTimeline = new Timeline(
-                new KeyFrame(Duration.seconds(1), e -> animateVehicle(direction))
-        );
-        vehicleMovementTimeline.setCycleCount(greenDuration);
-        vehicleMovementTimeline.play();
 
-
-        Timeline vehicleTimeline = new Timeline();
-        int estimatedPassing = Math.min(greenDuration, vehicleImageQueues.getOrDefault(direction, new LinkedList<>()).size());
-        for (int i = 0; i < estimatedPassing; i++) {
-            int delay = i;
-            KeyFrame frame = new KeyFrame(Duration.seconds(delay * 1.1), e -> animateVehicle(direction));
-            vehicleTimeline.getKeyFrames().add(frame);
-        }
-        vehicleTimeline.play();
-
-
-        // Araç geçişi varsayımı: her saniyede 1 araç geçebilir
-        int totalVehicles = trafficData.getVehicleCount(direction);
-        int remaining = totalVehicles - estimatedPassing;   // Modeli güncelle
-
-        trafficData.setVehicleCount(direction, remaining);
-        // Trafik istatistiklerini güncelle
-        trafficStatistics.update(direction, estimatedPassing, remaining);
-        */
 
         // İstatistik güncelleme
         int totalVehicles = trafficData.getVehicleCount(direction);
@@ -244,6 +222,11 @@ public class SimulationController {
         yellowTimeline.play();
         redTimeline.play();
         nextDirectionTimeline.play();
+
+        //aktif timelineları listeye eklerim
+        activeTimelines.add(yellowTimeline);
+        activeTimelines.add(redTimeline);
+        activeTimelines.add(nextDirectionTimeline);
     }
 
     private void proceedToNextDirection() {
@@ -380,15 +363,7 @@ public class SimulationController {
             }
         }
     }
-    /*
-    private void scheduleVehicleMovements(Direction direction, int durationSeconds) {
-        Timeline movementTimeline = new Timeline();
-        movementTimeline.setCycleCount(durationSeconds); // yeşil ışık süresi kadar
-        movementTimeline.getKeyFrames().add(
-                new KeyFrame(Duration.seconds(1), e -> animateVehicle(direction)) // her saniye 1 araç hareket etsin
-        );
-        movementTimeline.play();
-    }*/
+
 
     private void scheduleVehicleMovements(Direction direction, int greenDuration) {
         Queue<ImageView> queue = vehicleImageQueues.get(direction);
@@ -407,10 +382,10 @@ public class SimulationController {
         }
 
         vehicleTimeline.play();
+        activeTimelines.add(vehicleTimeline);
     }
 
-
-    private void animateVehicle(Direction direction) {
+private void animateVehicle(Direction direction) {
         if (currentLightStates.get(direction) != LightState.GREEN) {
             System.out.println("Kırmızı/Sarı ışıkta hareket engellendi: " + direction);
             return;
@@ -446,6 +421,7 @@ public class SimulationController {
             case EAST  -> localEndX = -700;
             case WEST  -> localEndX = 700;
         }
+
         System.out.println("Hareket: " + direction + " start=(" + localStartX + ", " + localStartY + ") → end=(" + localEndX + ", " + localEndY + ")");
 
 
@@ -456,18 +432,21 @@ public class SimulationController {
 
         PathTransition transition = new PathTransition(Duration.seconds(3), path, vehicle);
         transition.setOrientation(PathTransition.OrientationType.NONE);
+        activeTransitions.add(transition);
         transition.setOnFinished(e -> {
             vehicleLayer.getChildren().remove(vehicle);
             addNextVehicleIfAvailable(direction);
+            activeTransitions.remove(transition);
         });
         transition.play();
-
     }
-
 
 
     @FXML
     private void onStartSimulationClick() {
+        isRunning = true;
+        setStatesButtons();
+
         setupTimeline(); // Start butonuna basılınca simülasyon başlasın
         directionOrder = Arrays.asList(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST);
         currentIndex = 0;
@@ -535,18 +514,54 @@ public class SimulationController {
 
     @FXML
     private void onPauseClick() {
-        //burayı doldur
-        showAlert("Pause: Not yet implemented to halt light timers individually.");
+        if (isPaused) return;
+        isPaused = true;
+        setStatesButtons();
+
+        // Tüm aktif timeline'ları duraklat
+        for (Timeline timeline : activeTimelines) {
+            if (timeline != null) {
+                timeline.pause();
+            }
+        }
+
+        // Tüm araç animasyonlarını duraklat
+        for (PathTransition transition : activeTransitions) {
+            if (transition != null) {
+                transition.pause();
+            }
+        }
+
+        System.out.println("Simülasyon duraklatıldı");
     }
 
     @FXML
     private void onResumeClick() {
-        //burayı doldur
-        showAlert("Resume: Not yet implemented to individuals timelines.");
+        if(!isPaused) return;
+        isPaused = false;
+        setStatesButtons();
+
+        for (Timeline timeline : activeTimelines) {
+            if (timeline != null) {
+                timeline.play();
+            }
+        }
+
+        // Tüm araç animasyonlarını devam ettir
+        for (PathTransition transition : activeTransitions) {
+            if (transition != null) {
+                transition.play();
+            }
+        }
+
+        System.out.println("Simülasyon devam ettirildi");
     }
 
     @FXML
     private void onResetClick() {
+        isRunning = false;
+        setStatesButtons();
+
         trafficStatistics.reset();
         trafficData.reset();
         // tüm ışıkları kırmızıya çek
@@ -558,6 +573,13 @@ public class SimulationController {
         // input ekranına yönlendir
         Stage stage = (Stage) resetButton.getScene().getWindow();
         SceneManager.switchScene(stage, "/com/traffic/view/InputView.fxml");
+    }
+
+    private void setStatesButtons(){
+        startButton.setDisable(isRunning);
+        pauseButton.setDisable(!isRunning||isPaused);
+        resumeButton.setDisable(!isRunning||!isPaused);
+        resetButton.setDisable(false);
     }
 
     private void showAlert(String message) {

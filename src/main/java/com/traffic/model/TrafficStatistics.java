@@ -48,7 +48,6 @@ public class TrafficStatistics {
         return entries.values().stream().mapToInt(TrafficStatisticsEntry::getRemaining).sum();
     }
 
-
     public void update(Direction dir, int passed, int remaining) {
         TrafficStatisticsEntry entry = entries.get(dir);
         entry.setPassed(passed);
@@ -65,16 +64,11 @@ public class TrafficStatistics {
         entry.setRemaining(count);
     }
 
-
     public void reset() {
         for (TrafficStatisticsEntry entry : entries.values()) {
             entry.setPassed(0);
             entry.setRemaining(0);
         }
     }
-
-
-
-
 }
 
