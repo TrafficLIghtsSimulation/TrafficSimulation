@@ -82,6 +82,11 @@ public class SimulationController  {
 
     private static final double VEHICLE_STEP = 45.0;
 
+    //pause ve resume işlemlerinde o an aktif olan nesneleri tutar
+    private List<Timeline> activeTimelines = new ArrayList<>();
+    private List<PathTransition> activeTransitions = new ArrayList<>();
+    private boolean isPaused = false;
+
     public void initialize() {
         setupTable();
         setupLightStates();
@@ -246,6 +251,11 @@ public class SimulationController  {
         yellowTimeline.play();
         redTimeline.play();
         nextDirectionTimeline.play();
+
+        //aktif timelineları listeye eklerim
+        activeTimelines.add(yellowTimeline);
+        activeTimelines.add(redTimeline);
+        activeTimelines.add(nextDirectionTimeline);
     }
 
     private void proceedToNextDirection() {
@@ -409,6 +419,7 @@ public class SimulationController  {
         }
 
         vehicleTimeline.play();
+        activeTimelines.add(vehicleTimeline);
     }
 
 
@@ -458,9 +469,11 @@ public class SimulationController  {
 
         PathTransition transition = new PathTransition(Duration.seconds(3), path, vehicle);
         transition.setOrientation(PathTransition.OrientationType.NONE);
+        activeTransitions.add(transition);
         transition.setOnFinished(e -> {
             vehicleLayer.getChildren().remove(vehicle);
             addNextVehicleIfAvailable(direction);
+            activeTransitions.remove(transition);
         });
         transition.play();
 
@@ -537,14 +550,51 @@ public class SimulationController  {
 
     @FXML
     private void onPauseClick() {
-        //burayı doldur
-        showAlert("Pause: Not yet implemented to halt light timers individually.");
+        if (isPaused) return;
+
+        isPaused = true;
+
+        // Tüm aktif timeline'ları duraklat
+        for (Timeline timeline : activeTimelines) {
+            if (timeline != null) {
+                timeline.pause();
+            }
+        }
+
+        // Tüm araç animasyonlarını duraklat
+        for (PathTransition transition : activeTransitions) {
+            if (transition != null) {
+                transition.pause();
+            }
+        }
+
+        System.out.println("Simülasyon duraklatıldı");
     }
+
+
 
     @FXML
     private void onResumeClick() {
-        //burayı doldur
-        showAlert("Resume: Not yet implemented to individuals timelines.");
+       if(!isPaused) return;
+
+       isPaused = false;
+        for (Timeline timeline : activeTimelines) {
+            if (timeline != null) {
+                timeline.play();
+            }
+        }
+
+        // Tüm araç animasyonlarını devam ettir
+        for (PathTransition transition : activeTransitions) {
+            if (transition != null) {
+                transition.play();
+            }
+        }
+
+        System.out.println("Simülasyon devam ettirildi");
+
+
+
     }
 
     @FXML
