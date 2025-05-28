@@ -188,7 +188,7 @@ public class SimulationController  {
         currentLightStates.put(direction, LightState.GREEN);
         updateLightCircles();
         startCountdownTimer(direction, greenDuration, Paint.valueOf("#007200"));// YEŞİL geri sayım başlasın
-        scheduleVehicleMovements(direction, greenDuration);
+        scheduleVehicleMovements(direction,greenDuration);
         /*
         Timeline vehicleMovementTimeline = new Timeline(
                 new KeyFrame(Duration.seconds(1), e -> animateVehicle(direction))
@@ -273,10 +273,10 @@ public class SimulationController  {
 
     private ImageView createVehicleImage(String type, double x, double y, Direction direction) {
         String imagePath = switch (type) {
-            case "car" -> "/com/traffic/view/main_assets/car.png";
-            case "bus" -> "/com/traffic/view/main_assets/bus.png";
-            case "truck" -> "/com/traffic/view/main_assets/truck.png";
-            case "motorcycle" -> "/com/traffic/view/main_assets/motorcycle.png";
+            case "car" -> "/com/example/traffic/main_assets/car.png";
+            case "bus" -> "/com/example/traffic/main_assets/bus.png";
+            case "truck" -> "/com/example/traffic/main_assets/truck.png";
+            case "motorcycle" -> "/com/example/traffic/main_assets/motorcycle.png";
             default -> null;
         };
 
@@ -319,6 +319,14 @@ public class SimulationController  {
 
 
     private double getVehicleX(Direction direction, int index) {
+        if (index == 0) {
+            return switch (direction) {
+                case NORTH -> 310;
+                case SOUTH -> 380;
+                case EAST  -> 460; //447
+                case WEST -> 230;
+            };
+        }
         return switch (direction) {
             case NORTH -> 310;
             case SOUTH -> 380;
@@ -328,6 +336,14 @@ public class SimulationController  {
     }
 
     private double getVehicleY(Direction direction, int index) {
+        if (index == 0) {
+            return switch (direction) {
+                case NORTH -> 10; //154
+                case SOUTH -> 372; //395
+                case EAST  -> 238;
+                case WEST -> 300;
+            };
+        }
         return switch (direction) {
             case NORTH -> 10;
             case SOUTH -> 520;
@@ -431,8 +447,8 @@ public class SimulationController  {
             if (nextVehicle != null) {
                 double x = getVehicleX(direction, currentCount);
                 double y = getVehicleY(direction, currentCount);
-                nextVehicle.setX(x);
-                nextVehicle.setY(y);
+                nextVehicle.setLayoutX(x);
+                nextVehicle.setLayoutY(y);
                 vehicleLayer.getChildren().add(nextVehicle);
             }
         }

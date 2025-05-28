@@ -41,10 +41,10 @@ public class VehicleFactory {
 
     //Araç türlerinin resimler ile eşleştirilmesi
     public static String getVehicleImagePath(Class<? extends Vehicle> vehicleClass) {
-        if (vehicleClass == Truck.class) return "/com/traffic/view/main_assets/truck.png";
-        if (vehicleClass == Bus.class) return "/com/traffic/view/main_assets/bus.png";
-        if (vehicleClass == Car.class) return "/com/traffic/view/main_assets/car.png";
-        if (vehicleClass == Motorcycle.class) return "/com/traffic/view/main_assets/motorcycle.png";
+        if (vehicleClass == Truck.class) return "/com/example/traffic/main_assets/truck.png";
+        if (vehicleClass == Bus.class) return "/com/example/traffic/main_assets/bus.png";
+        if (vehicleClass == Car.class) return "/com/example/traffic/main_assets/car.png";
+        if (vehicleClass == Motorcycle.class) return "/com/example/traffic/main_assets/motorcycle.png";
         return null;
     }
 
