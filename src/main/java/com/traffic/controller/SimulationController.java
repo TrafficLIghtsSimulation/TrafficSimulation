@@ -352,77 +352,6 @@ public class SimulationController  {
         };
     }
 
-    /* TranslateTransition kullanılmak istenirse
-    private int getCurrentVehicleIndex(Direction direction) {
-        int maxIndex = -1;
-        for (javafx.scene.Node node : vehicleLayer.getChildren()) {
-            if (node instanceof ImageView imageView) {
-                double x = imageView.getLayoutX();
-                double y = imageView.getLayoutY();
-                double angle = imageView.getRotate();
-
-                switch (direction) {
-                    case NORTH -> {
-                        if (x == 310 && angle == 180)
-                            maxIndex++;
-                    }
-                    case SOUTH -> {
-                        if (x == 380 && angle == 0)
-                            maxIndex++;
-                    }
-                    case EAST -> {
-                        if (y == 238 && angle == 270)
-                            maxIndex++;
-                    }
-                    case WEST -> {
-                        if (y == 300 && angle == 90)
-                            maxIndex++;
-                    }
-                }
-            }
-        }
-        return maxIndex + 1;
-    }
-
-    private void animateVehicle(Direction direction) {
-        Queue<ImageView> queue = vehicleImageQueues.get(direction);
-        if (queue == null || queue.isEmpty()) return;
-
-        ImageView vehicle = queue.poll(); // sıradaki ilk aracı çıkar
-        if (vehicle == null) return;
-
-        TranslateTransition transition = new TranslateTransition(Duration.seconds(1), vehicle);
-
-        switch (direction) {
-            case NORTH -> transition.setByY(VEHICLE_STEP);  // Aşağı (yukarıdan gelen)
-            case SOUTH -> transition.setByY(-VEHICLE_STEP); // Yukarı (aşağıdan gelen)
-            case EAST  -> transition.setByX(-VEHICLE_STEP); // Sola (sağdan gelen)
-            case WEST  -> transition.setByX(VEHICLE_STEP);  // Sağa (soldan gelen)
-        }
-
-        transition.setOnFinished(e -> {
-            vehicleLayer.getChildren().remove(vehicle); // Geçen aracı sahneden sil
-
-            if (!queue.isEmpty()) {
-                ImageView next = queue.peek(); // Sıradaki araç
-                int index = getCurrentVehicleIndex(direction); // Şu an sahnedeki araç sayısı
-                double x = getVehicleX(direction, index);
-                double y = getVehicleY(direction, index);
-
-                next.setLayoutX(x);
-                next.setLayoutY(y);
-
-                if (!vehicleLayer.getChildren().contains(next)) {
-                    vehicleLayer.getChildren().add(next);
-                    queue.poll(); // Gerçekten sıradan çıkar
-                }
-            }
-        });
-
-        transition.play();
-    }
-     */
-
 
 
     private int getCurrentVehicleCount(Direction direction) {
@@ -453,7 +382,7 @@ public class SimulationController  {
             }
         }
     }
-
+    /*
     private void scheduleVehicleMovements(Direction direction, int durationSeconds) {
         Timeline movementTimeline = new Timeline();
         movementTimeline.setCycleCount(durationSeconds); // yeşil ışık süresi kadar
@@ -461,10 +390,34 @@ public class SimulationController  {
                 new KeyFrame(Duration.seconds(1), e -> animateVehicle(direction)) // her saniye 1 araç hareket etsin
         );
         movementTimeline.play();
+    }*/
+
+    private void scheduleVehicleMovements(Direction direction, int greenDuration) {
+        Queue<ImageView> queue = vehicleImageQueues.get(direction);
+        if (queue == null || queue.isEmpty()) {
+            return;
+        }
+
+        Timeline vehicleTimeline = new Timeline();
+        int count = Math.min(greenDuration, queue.size());
+
+        for (int i = 0; i < count; i++) {
+            KeyFrame frame = new KeyFrame(Duration.seconds(i), e -> {
+                animateVehicle(direction);
+            });
+            vehicleTimeline.getKeyFrames().add(frame);
+        }
+
+        vehicleTimeline.play();
     }
 
 
     private void animateVehicle(Direction direction) {
+        if (currentLightStates.get(direction) != LightState.GREEN) {
+            System.out.println("Kırmızı/Sarı ışıkta hareket engellendi: " + direction);
+            return;
+        }
+
         System.out.println("animateVehicle çağrıldı: " + direction);
 
         Queue<ImageView> imageQueue = vehicleImageQueues.get(direction);
@@ -477,6 +430,11 @@ public class SimulationController  {
         if (vehicle == null) {
             System.out.println("Araç null geldi.");
             return;
+        }
+
+        // Eğer araç sahnede değilse sahneye ekle
+        if (!vehicleLayer.getChildren().contains(vehicle)) {
+            vehicleLayer.getChildren().add(vehicle);
         }
 
         double localStartX = 0;
@@ -498,7 +456,6 @@ public class SimulationController  {
                 new LineTo(localEndX, localEndY)
         );
 
-
         PathTransition transition = new PathTransition(Duration.seconds(3), path, vehicle);
         transition.setOrientation(PathTransition.OrientationType.NONE);
         transition.setOnFinished(e -> {
@@ -506,7 +463,9 @@ public class SimulationController  {
             addNextVehicleIfAvailable(direction);
         });
         transition.play();
+
     }
+
 
 
     @FXML
