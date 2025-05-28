@@ -1,3 +1,4 @@
+
 package com.traffic.controller;
 
 import com.traffic.model.*;
@@ -86,10 +87,13 @@ public class SimulationController  {
     private List<Timeline> activeTimelines = new ArrayList<>();
     private List<PathTransition> activeTransitions = new ArrayList<>();
     private boolean isPaused = false;
+    private boolean isRunning = false;
 
     public void initialize() {
         setupTable();
         setupLightStates();
+        setStatesButtons();
+
     }
 
 
@@ -139,6 +143,7 @@ public class SimulationController  {
             countdown.getKeyFrames().add(keyFrame);
         }
         countdown.play();
+        activeTimelines.add(countdown);
     }
 
     // Doğru Labelı bulmak için
@@ -337,6 +342,14 @@ public class SimulationController  {
                 case WEST -> 230;
             };
         }
+        else if (index == 1) {
+            return switch (direction) {
+                case NORTH -> 310;
+                case SOUTH -> 380;
+                case EAST -> 580;
+                case WEST -> 115;
+            };
+        }
         return switch (direction) {
             case NORTH -> 310;
             case SOUTH -> 380;
@@ -350,9 +363,17 @@ public class SimulationController  {
             return switch (direction) {
                 case NORTH -> 10; //154
                 case SOUTH -> 372; //395
-                case EAST  -> 238;
+                case EAST -> 238;
                 case WEST -> 300;
             };
+        }
+        else if (index == 1) {
+                return switch (direction) {
+                    case NORTH -> 10;
+                    case SOUTH -> 446;
+                    case EAST -> 238;
+                    case WEST -> 300;
+                };
         }
         return switch (direction) {
             case NORTH -> 10;
@@ -483,6 +504,9 @@ public class SimulationController  {
 
     @FXML
     private void onStartSimulationClick() {
+        isRunning = true;
+        setStatesButtons();
+
         setupTimeline(); // Start butonuna basılınca simülasyon başlasın
         directionOrder = Arrays.asList(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST);
         currentIndex = 0;
@@ -551,8 +575,9 @@ public class SimulationController  {
     @FXML
     private void onPauseClick() {
         if (isPaused) return;
-
         isPaused = true;
+        setStatesButtons();
+
 
         // Tüm aktif timeline'ları duraklat
         for (Timeline timeline : activeTimelines) {
@@ -575,9 +600,10 @@ public class SimulationController  {
 
     @FXML
     private void onResumeClick() {
-       if(!isPaused) return;
+        if(!isPaused) return;
+        isPaused = false;
+        setStatesButtons();
 
-       isPaused = false;
         for (Timeline timeline : activeTimelines) {
             if (timeline != null) {
                 timeline.play();
@@ -599,6 +625,38 @@ public class SimulationController  {
 
     @FXML
     private void onResetClick() {
+        //durdurma ve temizleme işlemleri
+        for(Timeline timeline : activeTimelines) {
+            if (timeline != null) {
+                timeline.stop();
+            }
+        }
+        activeTimelines.clear();
+
+        for(PathTransition transition : activeTransitions) {
+            if (transition != null) {
+                transition.stop();
+            }
+        }
+        activeTimelines.clear();
+
+        //araçları kaldırma
+        vehicleLayer.getChildren().clear();
+        vehicleImageQueues.clear();
+        isRunning = false;
+        setStatesButtons();
+        //lambalar kırmızı
+        for(Direction direction : Direction.values()) {
+            currentLightStates.put(direction,LightState.RED);
+        }
+        updateLightCircles();
+
+        clearAllTimerLabels();
+
+        Stage stage =(Stage) resetButton.getScene().getWindow();
+        SceneManager.switchScene(stage, "/traffic/view/InputView.fxml");
+        /*isRunning = false;
+        setStatesButtons();
         trafficStatistics.reset();
         trafficData.reset();
         // tüm ışıkları kırmızıya çek
@@ -609,7 +667,14 @@ public class SimulationController  {
         clearAllTimerLabels();
         // input ekranına yönlendir
         Stage stage = (Stage) resetButton.getScene().getWindow();
-        SceneManager.switchScene(stage, "/com/traffic/view/InputView.fxml");
+        SceneManager.switchScene(stage, "/com/traffic/view/InputView.fxml"); */
+    }
+
+    private void setStatesButtons(){
+        startButton.setDisable(isRunning);
+        pauseButton.setDisable(!isRunning||isPaused);
+        resumeButton.setDisable(!isRunning||!isPaused);
+        resetButton.setDisable(false);
     }
 
     private void showAlert(String message) {
@@ -620,7 +685,3 @@ public class SimulationController  {
         alert.showAndWait();
     }
 }
-
-
-
-

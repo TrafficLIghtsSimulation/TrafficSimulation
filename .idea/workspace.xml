@@ -124,23 +124,12 @@
       <workItem from="1748203906434" duration="653000" />
       <workItem from="1748204572904" duration="37000" />
       <workItem from="1748204619655" duration="161000" />
-      <workItem from="1748210769503" duration="56776000" />
+      <workItem from="1748210769503" duration="67499000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/traffic/controller/SimulationController.java</url>
-          <line>558</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
