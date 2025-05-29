@@ -13,7 +13,7 @@ Users can either manuallydefine vehicle counts for each direction or start the s
 # Project Development Process
 During the project development process, firstly the requirements analysis was performed and the information and details about the project were obtained, after the requirements analysis process, scenarios and use cases were extracted, each use case was detailed and the use case diagram and use case descriptions(unique name, participating actors, brief description, entry conditions, exit conditions and step-by-step description) were created. After this stage, the classes required within the scope of the project were discussed and class diagrams were prepared. The relationships and the types of these relationships between classes were determined using CRC cards. In parallel with this analysis, the UML diagram was prepared. After the project file organization structure and the data structures to be used, design patterns, visual screens and structures were discussed, the coding phase of the project was carried out. After the completion of coding stage, the UML diagram was updated and user manuals and reports were created.
 
-\src\main\resources\com\traffic\view\main_assets
+
 ![Traffic Light Control System Use Case Diagram](/src/main/resources/com/traffic/view/main_assets/TrafficLightControlSystemUseCaseDiagram.png)
 
 ![Traffic Light Control System UML Diagram](/src/main/resources/com/traffic/view/main_assets/TrafficLightControlSystemUMLDiagram.png)
