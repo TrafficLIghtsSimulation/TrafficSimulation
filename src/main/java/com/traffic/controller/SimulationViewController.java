@@ -76,7 +76,7 @@ public class SimulationViewController {
 
     // Her yön için sahnedeki araçların ImageView kuyruğu
     private final Map<Direction, Queue<ImageView>> vehicleImageQueues = new EnumMap<>(Direction.class);
-    private final Map<Direction, Timeline> countdownTimers = new EnumMap<>(Direction.class);
+
     //pause ve resume işlemlerinde o an aktif olan nesneleri tutar
     private List<Timeline> activeTimelines = new ArrayList<>();
     private List<PathTransition> activeTransitions = new ArrayList<>();
@@ -145,13 +145,6 @@ public class SimulationViewController {
         Label label = getLabelForDirection(direction);
         label.setTextFill(color);
 
-        // Eğer o yöne ait eski sayaç varsa durdur
-        if (countdownTimers.containsKey(direction)) {
-            Timeline oldTimer = countdownTimers.get(direction);
-            if (oldTimer != null) {
-                oldTimer.stop();
-            }
-        }
 
         Timeline countdown = new Timeline();
         for (int i = 0; i <= durationInSeconds; i++) {
@@ -160,7 +153,7 @@ public class SimulationViewController {
             countdown.getKeyFrames().add(keyFrame);
         }
         countdown.play();
-        countdownTimers.put(direction, countdown); // Sayaçları map’e ekle reset için kullanacağız bu nedenle kaydedilmeli
+        activeTimelines.add(countdown);
     }
 
     // Doğru Labelı bulmak için
@@ -584,6 +577,7 @@ private void animateVehicle(Direction direction) {
         System.out.println("Simülasyon devam ettirildi");
     }
 
+
     @FXML
     private void onResetClick() {
         //durdurma ve temizleme işlemleri
@@ -599,14 +593,7 @@ private void animateVehicle(Direction direction) {
                 transition.stop();
             }
         }
-        activeTransitions.clear();
-
-        for (Timeline timer : countdownTimers.values()) {
-            if (timer != null) {
-                timer.stop();
-            }
-        }
-        countdownTimers.clear();
+        activeTimelines.clear();
 
         //araçları kaldırma
         vehicleLayer.getChildren().clear();
@@ -625,6 +612,8 @@ private void animateVehicle(Direction direction) {
         Stage stage =(Stage) resetButton.getScene().getWindow();
         SceneManager.switchScene(stage, "/com/traffic/view/InputView.fxml");
     }
+
+
 
     private void setStatesButtons(){
         startButton.setDisable(isRunning);
