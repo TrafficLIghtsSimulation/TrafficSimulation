@@ -15,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -35,7 +34,7 @@ import java.util.*;
  * Controller for the simulation screen.
  * This class handles time counters and will later handle vehicle and light updates.
  */
-public class SimulationController {
+public class SimulationViewController {
 
     // InputView'deki Start butonuna basınca SimulationView ekranı açılır ve simülasyon başlar
     // Pause : Nesnelerin X ve Y konumlarındaki değişim sıfır olmalı mevcut konumlarında kalacaklar, Timer mevcut durumda durucak, Işıkların durumlarında değişiklik olmamalı
@@ -55,6 +54,7 @@ public class SimulationController {
     @FXML private Label westTimerLabel;
     @FXML private Label northTimerLabel;
     @FXML private Label southTimerLabel;
+    @FXML private Label totalVehicleLabel;
 
     @FXML private Button startButton, pauseButton, resumeButton, resetButton;
 
@@ -64,8 +64,7 @@ public class SimulationController {
     @FXML private TableColumn<TrafficStatisticsEntry, Number> passingColumn;
     @FXML private TableColumn<TrafficStatisticsEntry, Number> remainingColumn;
 
-    @FXML
-    private Pane vehicleLayer;
+    @FXML private Pane vehicleLayer;
 
     private final Map<Direction, LightState> currentLightStates = new EnumMap<>(Direction.class);
     private final TrafficData trafficData = TrafficData.getInstance();
@@ -77,7 +76,7 @@ public class SimulationController {
 
     // Her yön için sahnedeki araçların ImageView kuyruğu
     private final Map<Direction, Queue<ImageView>> vehicleImageQueues = new EnumMap<>(Direction.class);
-
+    private final Map<Direction, Timeline> countdownTimers = new EnumMap<>(Direction.class);
     //pause ve resume işlemlerinde o an aktif olan nesneleri tutar
     private List<Timeline> activeTimelines = new ArrayList<>();
     private List<PathTransition> activeTransitions = new ArrayList<>();
@@ -85,11 +84,28 @@ public class SimulationController {
     private boolean isRunning = false;
 
     public void initialize() {
+        updateTotalVehicleLabel();
         setupTable();
         setupLightStates();
         setStatesButtons();
     }
 
+    private void updateTotalVehicleLabel() {
+        int north = trafficData.getVehicleCount(Direction.NORTH);
+        int south = trafficData.getVehicleCount(Direction.SOUTH);
+        int east = trafficData.getVehicleCount(Direction.EAST);
+        int west = trafficData.getVehicleCount(Direction.WEST);
+
+        int totalVehicles = north + south + east + west;
+
+        totalVehicleLabel.setText(
+                "North: " + north + "   |   " +
+                        "South: " + south + "   |   " +
+                        "East: " + east + "   |   " +
+                        "West: " + west + "   ||   " +
+                        "Total: " + totalVehicles
+        );
+    }
 
     private void setupTable() {
         directionColumn.setCellValueFactory(cellData -> cellData.getValue().directionProperty());
@@ -129,6 +145,14 @@ public class SimulationController {
         Label label = getLabelForDirection(direction);
         label.setTextFill(color);
 
+        // Eğer o yöne ait eski sayaç varsa durdur
+        if (countdownTimers.containsKey(direction)) {
+            Timeline oldTimer = countdownTimers.get(direction);
+            if (oldTimer != null) {
+                oldTimer.stop();
+            }
+        }
+
         Timeline countdown = new Timeline();
         for (int i = 0; i <= durationInSeconds; i++) {
             int timeLeft = durationInSeconds - i;
@@ -136,6 +160,7 @@ public class SimulationController {
             countdown.getKeyFrames().add(keyFrame);
         }
         countdown.play();
+        countdownTimers.put(direction, countdown); // Sayaçları map’e ekle reset için kullanacağız bu nedenle kaydedilmeli
     }
 
     // Doğru Labelı bulmak için
@@ -300,6 +325,7 @@ public class SimulationController {
 
 
     private double getVehicleX(Direction direction, int index) {
+        //ilk aracın konumlandırılması için gerekli koordinatlar
         if (index == 0) {
             return switch (direction) {
                 case NORTH -> 310;
@@ -317,6 +343,7 @@ public class SimulationController {
     }
 
     private double getVehicleY(Direction direction, int index) {
+        //ilk aracın konumlandırılması için gerekli koordinatlar
         if (index == 0) {
             return switch (direction) {
                 case NORTH -> 10; //154
@@ -490,7 +517,7 @@ private void animateVehicle(Direction direction) {
             }
 
             /*
-            //iLK 4 ARACI SAHNEYE EKLE
+            //Kuyruktaki ilk 4 aracı sahneye ekleme
             int maxInitial = Math.min(imageQueue.size(), 4);
             for (int i = 0; i < maxInitial; i++) {
                 ImageView vehicle = imageQueue.poll();
@@ -559,19 +586,43 @@ private void animateVehicle(Direction direction) {
 
     @FXML
     private void onResetClick() {
+        //durdurma ve temizleme işlemleri
+        for(Timeline timeline : activeTimelines) {
+            if (timeline != null) {
+                timeline.stop();
+            }
+        }
+        activeTimelines.clear();
+
+        for(PathTransition transition : activeTransitions) {
+            if (transition != null) {
+                transition.stop();
+            }
+        }
+        activeTransitions.clear();
+
+        for (Timeline timer : countdownTimers.values()) {
+            if (timer != null) {
+                timer.stop();
+            }
+        }
+        countdownTimers.clear();
+
+        //araçları kaldırma
+        vehicleLayer.getChildren().clear();
+        vehicleImageQueues.clear();
         isRunning = false;
         setStatesButtons();
-
-        trafficStatistics.reset();
-        trafficData.reset();
-        // tüm ışıkları kırmızıya çek
-        for (Direction d : Direction.values()) {
-            currentLightStates.put(d, LightState.RED);
+        //lambalar kırmızı
+        for(Direction direction : Direction.values()) {
+            currentLightStates.put(direction,LightState.RED);
         }
         updateLightCircles();
+
         clearAllTimerLabels();
-        // input ekranına yönlendir
-        Stage stage = (Stage) resetButton.getScene().getWindow();
+        trafficStatistics.reset();
+        trafficData.reset();
+        Stage stage =(Stage) resetButton.getScene().getWindow();
         SceneManager.switchScene(stage, "/com/traffic/view/InputView.fxml");
     }
 

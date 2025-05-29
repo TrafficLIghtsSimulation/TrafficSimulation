@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  * Controller for the Welcome View.
  * Handles START button to transition to the Input View.
  */
-public class WelcomeController {
+public class WelcomeViewController {
     @FXML
     //Start Butonuna tıklanınca tetiklenir
     private void onEnterButtonClick(ActionEvent event) {

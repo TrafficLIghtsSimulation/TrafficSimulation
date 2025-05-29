@@ -8,7 +8,4 @@ public class Motorcycle extends Vehicle {
     public Motorcycle(String id, Direction direction, MovementType movementType, double speed) {
         super(id, direction, movementType, speed);
     }
-
-    //move() metodu vehicle da olduğu gibi çalışır
-
 }

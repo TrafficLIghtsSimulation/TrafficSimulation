@@ -12,5 +12,4 @@ public class Car extends Vehicle {
         super(id, direction, movementType, speed);
     }
 
-    //move() metodu vehicle da olduğu gibi çalışır
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" style="-fx-background-color: #e2dbc6;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.traffic.controller.SimulationController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" style="-fx-background-color: #e2dbc6;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.traffic.controller.SimulationViewController">
    <children>
       <AnchorPane layoutY="550.0" prefHeight="106.0" prefWidth="700.0" style="-fx-border-color: black; -fx-background-color: #eeeeee;">
          <children>
@@ -939,11 +939,7 @@
       </Label>
       <Pane fx:id="vehicleLayer" layoutX="-4.0" layoutY="1.0" pickOnBounds="false" prefHeight="700.0" prefWidth="700.0">
          <children>
-            <Label fx:id="westTimerLabel11" layoutX="594.0" layoutY="231.0" style="-fx-font-family: 'Agency FB'; -fx-font-size: 20;" textFill="#fff9f9">
-               <font>
-                  <Font name="Agency FB Bold" size="17.0" />
-               </font>
-            </Label>
+            <Label fx:id="totalVehicleLabel" layoutX="292.0" layoutY="669.0" prefHeight="17.0" prefWidth="378.0" style="-fx-font-family: 'Agency FB'; -fx-font-size: 16;" text="Label" />
          </children></Pane>
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="247.0" layoutY="510.0">
          <image>
