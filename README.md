@@ -21,7 +21,7 @@ During the project development process, firstly the requirements analysis was pe
 ## Project Features 
 • **Welcome screen**:
   -Title texts, background image and "START" button
-  ![Traffic Light Control System WelcomeView Screen (/com/traffic/view/main_assets/welcomescreen.png)
+  ![Traffic Light Control System WelcomeView Screen] (/com/traffic/view/main_assets/welcomescreen.png)
 
   
 • **Input screen**:
@@ -44,6 +44,8 @@ When "Manual Traffic Density Input" is selected,
   - Digital counter (lights remaining time)
   - Real-time light transition animation
   - Animated cars
+  - The order of traffic lights is clockwise NORTH, EAST, SOUTH, WEST
+
   ![Traffic Light Control System SimulationView Screen](/resources//com/traffic/view/main_assets/simulationscreen.png)
 
 If the "Manual Traffic Density Input" checkbox is selected by the user on the InputView screen, but the number of vehicles is 0 for all directions, the "Start" button becomes active and the user is directed to the SimulationView screen. However, when the user clicks the "Start" button on the SimulationView screen, the user is given the warning **"All directions have zero traffic. Simulation will not start."** because there is no vehicle to be generated.
@@ -89,9 +91,8 @@ If the "Manual Traffic Density Input" checkbox is selected by the user on the In
 | North     | 90                 | 60%    | 72 sec     |
 | South     | 45                 | 30%    | 36 sec     |
 | East      | 15                 | 10%  ​​  | 12 sec     |
-| West      | 0                  | 0% ​​    | 0 sec     |
+| West      | 0                  | 0% ​​    | 0 sec      |
 
-saat yönü
 
 ## Simulation Behavior 
 - When the light is **green** vehicles pass
