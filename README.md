@@ -13,23 +13,23 @@ Users can either manuallydefine vehicle counts for each direction or start the s
 # Project Development Process
 During the project development process, firstly the requirements analysis was performed and the information and details about the project were obtained, after the requirements analysis process, scenarios and use cases were extracted, each use case was detailed and the use case diagram and use case descriptions(unique name, participating actors, brief description, entry conditions, exit conditions and step-by-step description) were created. After this stage, the classes required within the scope of the project were discussed and class diagrams were prepared. The relationships and the types of these relationships between classes were determined using CRC cards. In parallel with this analysis, the UML diagram was prepared. After the project file organization structure and the data structures to be used, design patterns, visual screens and structures were discussed, the coding phase of the project was carried out. After the completion of coding stage, the UML diagram was updated and user manuals and reports were created.
 
+\src\main\resources\com\traffic\view\main_assets
+![Traffic Light Control System Use Case Diagram](/src/main/resources/com/traffic/view/main_assets/TrafficLightControlSystemUseCaseDiagram.png)
 
-![Traffic Light Control System Use Case Diagram](/resources/com/traffic/view/main_assets/TrafficLightControlSystemUseCaseDiagram.png)
-
-![Traffic Light Control System UML Diagram](/resources//com/traffic/view/main_assets/TrafficLightControlSystemUMLDiagram.png)
+![Traffic Light Control System UML Diagram](/src/main/resources/com/traffic/view/main_assets/TrafficLightControlSystemUMLDiagram.png)
 
 ## Project Features 
 • **Welcome screen**:
   -Title texts, background image and "START" button
-  ![Traffic Light Control System WelcomeView Screen] (/com/traffic/view/main_assets/welcomescreen.png)
+  ![Traffic Light Control System WelcomeView Screen] (/src/main/resources/com/traffic/view/main_assets/welcomescreen.png)
 
   
 • **Input screen**:
   - MANUAL and RANDOM mode selection
   - Entering the number of vehicles in NORTH, SOUTH, EAST, WEST directions in MANUAL mode
   - "START" button
-  ![Traffic Light Control System InputView Screen](/resources//com/traffic/view/main_assets/inputscreen.png)
-  ![Traffic Light Control System InputView Manuel Screen](/resources//com/traffic/view/main_assets/inputscreenmanuel.png)
+  ![Traffic Light Control System InputView Screen](/src/main/resources/com/traffic/view/main_assets/inputscreen.png)
+  ![Traffic Light Control System InputView Manuel Screen](/src/main/resources/com/traffic/view/main_assets/inputscreenmanuel.png)
 
 In order for the "Start" button to be activated, the user must select one of the "Manual Traffic Density Input" or "Random Traffic Density Input" options on the InputView screen. If the user selects the "Manual Traffic Density Input" checkbox, a vehicle count between 0-100 must be entered for each direction (North, South, East, West). The "Start" button will not be activated unless the vehicle count is entered for all directions. If the "Random Traffic Density Input" checkbox is selected, the "Start" button will be activated directly.
 When "Manual Traffic Density Input" is selected, 
@@ -46,7 +46,7 @@ When "Manual Traffic Density Input" is selected,
   - Animated cars
   - The order of traffic lights is clockwise NORTH, EAST, SOUTH, WEST
 
-  ![Traffic Light Control System SimulationView Screen](/resources//com/traffic/view/main_assets/simulationscreen.png)
+  ![Traffic Light Control System SimulationView Screen](/src/main/resources/com/traffic/view/main_assets/simulationscreen.png)
 
 If the "Manual Traffic Density Input" checkbox is selected by the user on the InputView screen, but the number of vehicles is 0 for all directions, the "Start" button becomes active and the user is directed to the SimulationView screen. However, when the user clicks the "Start" button on the SimulationView screen, the user is given the warning **"All directions have zero traffic. Simulation will not start."** because there is no vehicle to be generated.
 
