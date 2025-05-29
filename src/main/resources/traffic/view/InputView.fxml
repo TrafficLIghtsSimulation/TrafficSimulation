@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="700" prefWidth="700" spacing="20" style="-fx-background-image: url('main_assets/background.png');  -fx-background-color: #f5f7f9; " xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.traffic.controller.InputViewController">
+<VBox alignment="CENTER" prefHeight="700" prefWidth="700" spacing="20" style="-fx-background-image: url('main_assets/background.png');  -fx-background-color: #f5f7f9; " xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.traffic.controller.InputViewController">
    <!-- Başlık -->
     <Label alignment="CENTER" prefHeight="46.0" prefWidth="714.0" style="-fx-font-size: 20; -fx-font-family: 'Segoe UI';" text="Please select Traffic Density input mode" textFill="#11a7bb">
       <font>
@@ -27,9 +31,9 @@
             <Font size="18.0" />
          </font></CheckBox>
     </HBox>
-   <VBox fx:id="manualInputPane" alignment="CENTER_LEFT" managed="false" prefHeight="212.0" prefWidth="700.0" spacing="10.0" visible="false">
+   <VBox fx:id="manualInputPane" alignment="CENTER_LEFT" layoutX="100.0" managed="false" prefHeight="212.0" prefWidth="700.0" spacing="10.0" visible="false">
       <children>
-         <HBox prefHeight="100.0" prefWidth="200.0">
+         <HBox layoutX="100.0" prefHeight="100.0" prefWidth="200.0">
             <children>
                <Label alignment="CENTER" prefHeight="25.6" prefWidth="190.0" text="  North  ↑ :">
                   <font>

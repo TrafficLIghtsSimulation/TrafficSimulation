@@ -368,12 +368,12 @@ public class SimulationController  {
             };
         }
         else if (index == 1) {
-                return switch (direction) {
-                    case NORTH -> 10;
-                    case SOUTH -> 446;
-                    case EAST -> 238;
-                    case WEST -> 300;
-                };
+            return switch (direction) {
+                case NORTH -> 10;
+                case SOUTH -> 446;
+                case EAST -> 238;
+                case WEST -> 300;
+            };
         }
         return switch (direction) {
             case NORTH -> 10;
@@ -540,18 +540,18 @@ public class SimulationController  {
 
                 index++;
             }
-
+/*
             // İlk aracı sahneye ekle
             if (!imageQueue.isEmpty()) {
                 ImageView first = imageQueue.peek(); // sıradaki ilk aracı al
                 first.setLayoutX(getVehicleX(direction, 0));
                 first.setLayoutY(getVehicleY(direction, 0));
                 vehicleLayer.getChildren().add(first);
-            }
+            } */
 
-            /*
+
             //iLK 4 ARACI SAHNEYE EKLE
-            int maxInitial = Math.min(imageQueue.size(), 4);
+            int maxInitial = Math.min(imageQueue.size(), 1);
             for (int i = 0; i < maxInitial; i++) {
                 ImageView vehicle = imageQueue.poll();
                 if (vehicle != null) {
@@ -561,7 +561,7 @@ public class SimulationController  {
                     vehicle.setLayoutY(y);
                     vehicleLayer.getChildren().add(vehicle);
                 }
-            }*/
+            }
         }
 
         while (trafficData.getVehicleCount(directionOrder.get(currentIndex)) == 0) {
